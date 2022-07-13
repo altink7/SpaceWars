@@ -23,7 +23,6 @@ class GamePanel extends JPanel implements ActionListener {
 
     char direction = 'R';
     boolean running = false;
-    boolean statistik =false;
     boolean home =true;
 
     Timer timer;
@@ -80,18 +79,10 @@ class GamePanel extends JPanel implements ActionListener {
             x[i][1] = x[i - 1][1];
         }
         switch (direction) {
-            case 'U':
-                y[0][0] = y[0][0] - UNIT_SIZE;
-                break;
-            case 'D':
-                y[0][0] = y[0][0] + UNIT_SIZE;
-                break;
-            case 'L':
-                x[0][0] = x[0][0] - UNIT_SIZE;
-                break;
-            case 'R':
-                x[0][0] = x[0][0] + UNIT_SIZE;
-                break;
+            case 'U' -> y[0][0] = y[0][0] - UNIT_SIZE;
+            case 'D' -> y[0][0] = y[0][0] + UNIT_SIZE;
+            case 'L' -> x[0][0] = x[0][0] - UNIT_SIZE;
+            case 'R' -> x[0][0] = x[0][0] + UNIT_SIZE;
         }
         direction =65;
     }
