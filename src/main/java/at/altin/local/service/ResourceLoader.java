@@ -3,7 +3,8 @@ package at.altin.local.service;
 import java.io.InputStream;
 
 public class ResourceLoader {
-
+    public ResourceLoader() {
+    }
 
 
     public static InputStream load(String path) {

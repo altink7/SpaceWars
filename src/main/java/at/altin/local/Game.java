@@ -2,7 +2,9 @@ package at.altin.local;
 import at.altin.local.display.Window;
 import at.altin.local.service.GraphicsLoader;
 import java.awt.*;
+import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
 import java.net.ServerSocket;
 
 
@@ -30,7 +32,7 @@ public class Game extends Canvas implements Runnable{
      *
      */
     public static void main(String[] args) {
-        new Window(1000, 750, "NewGame", new Game());
+        new Window(WIDTH, HEIGHT, "NewGame", new Game());
     }
 
     public synchronized void start() {
@@ -40,7 +42,22 @@ public class Game extends Canvas implements Runnable{
         this.run();
     }
 
+    public void init() {
+        score=0;
+        gameover=false;
+        running=true;
+
+    }
+
+    public void test() {
+    }
+
+
+
     @Override
     public void run() {
+        this.init();
+        this.requestFocus();
+        this.test();
     }
 }

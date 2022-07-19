@@ -4,7 +4,8 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 
 public class GraphicsLoader {
-
+    public GraphicsLoader() {
+    }
 
 
     public static BufferedImage loadGraphics(String path) {
