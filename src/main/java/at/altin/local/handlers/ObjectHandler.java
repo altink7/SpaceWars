@@ -8,6 +8,11 @@ import java.util.LinkedList;
 public class ObjectHandler {
     public static LinkedList<GameObject> list = new LinkedList<GameObject>();
 
+    /***ObjectHandler
+     *
+     *
+     */
+
     public ObjectHandler() {
     }
 
