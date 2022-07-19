@@ -2,7 +2,6 @@ package at.altin.local.service;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 public class GraphicsLoader {
 
@@ -13,8 +12,8 @@ public class GraphicsLoader {
 
         try {
             image = ImageIO.read(ResourceLoader.load("/" + path));
-        } catch (IOException var3) {
-            var3.printStackTrace();
+        } catch (Exception var1) {
+            var1.printStackTrace();
         }
 
         return image;
