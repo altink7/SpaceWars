@@ -7,7 +7,6 @@ import at.altin.local.service.GraphicsLoader;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
 import java.net.ServerSocket;
 
 
@@ -62,13 +61,24 @@ public class Game extends Canvas implements Runnable{
         } else {
             Graphics g = bs.getDrawGraphics();
             ObjectHandler.render(g);
-            g.fillRect(0,0,1200,750);
-            g.drawImage(img_welcome, 0, 0, null);
-            g.setFont(new Font("Arial", 1, 48));
-            g.setColor(Color.WHITE);
-            String s = "Press Space";
-            int textWidth = g.getFontMetrics().stringWidth(s);
-            g.drawString(s, 950 - textWidth / 2, 200);
+            if(keyNumber==0) {
+                g.fillRect(0, 0, 1200, 750);
+                g.drawImage(img_welcome, 0, 0, null);
+                g.setFont(new Font("Arial", 1, 48));
+                g.setColor(Color.WHITE);
+                String s = "Press Space";
+                int textWidth = g.getFontMetrics().stringWidth(s);
+                g.drawString(s, 950 - textWidth / 2, 200);
+            }
+            else if(keyNumber==10){
+                g.setColor(Color.lightGray);
+                g.fillRect(0, 0, 1200, 750);
+                g.setFont(new Font("Arial", 2, 48));
+                g.setColor(Color.BLACK);
+                String s = "hier wird das Spiel entstehen!";
+                int textWidth = g.getFontMetrics().stringWidth(s);
+                g.drawString(s, WIDTH/2 - textWidth / 2, 200);
+            }
             g.dispose();
             bs.show();
         }
@@ -91,7 +101,7 @@ public class Game extends Canvas implements Runnable{
         this.init();
         this.requestFocus();
         long pastTime = System.nanoTime();
-        double amountOfTicks = 1.0D;
+        double amountOfTicks = 60.0D;
         double ns = 1.0E9D / amountOfTicks;
         double delta = 0.0D;
         long timer = System.currentTimeMillis();
