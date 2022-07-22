@@ -20,6 +20,7 @@ public class Game extends Canvas implements Runnable{
     public static int score;
     Thread thread;
     public ServerSocket serverSocket;
+    public static int keyNumber=0;
 
     /***JavaDoc
      * -Hier wird das Spiel ausgeführt
