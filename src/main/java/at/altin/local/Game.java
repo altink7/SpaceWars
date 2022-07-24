@@ -1,4 +1,5 @@
 package at.altin.local;
+import at.altin.local.display.ClickArea;
 import at.altin.local.display.Window;
 import at.altin.local.handlers.KeyHandler;
 import at.altin.local.handlers.MouseHandler;
@@ -14,12 +15,16 @@ import java.net.URL;
 
 
 public class Game extends Canvas implements Runnable{
+    public static int phase =0;
     public static final int WIDTH = 1200;
     public static final int HEIGHT = 750;
     public boolean running;
     public static boolean gameover;
     public static BufferedImage img_welcome;
     public static BufferedImage img_spaceships;
+    public static BufferedImage img_button;
+    public static boolean spaceshipSelected;
+    public static ClickArea[] button_select = new ClickArea[4];
     public static int score;
     Thread thread;
     public ServerSocket serverSocket;
@@ -56,8 +61,14 @@ public class Game extends Canvas implements Runnable{
         gameover=false;
         running=true;
         img_welcome = GraphicsLoader.readGraphics("C:\\Users\\User\\IdeaProjects\\NewGame\\src\\main\\java\\at\\altin\\local\\pictures\\welcome_rev1.png");
-        img_spaceships = GraphicsLoader.readGraphics("C:\\Users\\User\\IdeaProjects\\NewGame\\src\\main\\java\\at\\altin\\local\\pictures\\spaceships.jpg");
-        //img_welcome =GraphicsLoader.loadGraphics("welcome.png");
+        img_spaceships = GraphicsLoader.readGraphics("C:\\Users\\User\\IdeaProjects\\NewGame\\src\\main\\java\\at\\altin\\local\\pictures\\spaceships.png");
+        img_button=GraphicsLoader.readGraphics("C:\\Users\\User\\IdeaProjects\\NewGame\\src\\main\\java\\at\\altin\\local\\pictures\\button.png");
+        int xValue=10;
+        for(int i =0;i< button_select.length;i++) {
+            button_select[i] = new ClickArea(xValue, 600, 150, 85, img_button);
+            xValue+=295;
+        }
+
     }
 
     public void render() {
@@ -68,6 +79,7 @@ public class Game extends Canvas implements Runnable{
             Graphics g = bs.getDrawGraphics();
             ObjectHandler.render(g);
             if(keyNumber==0) {
+                phase=1; // Phase 1 ist Startbildschirm
                 g.fillRect(0, 0, 1200, 750);
                 g.drawImage(img_welcome, 0, 0, null);
                 g.setFont(new Font("Arial", 1, 48));
@@ -77,14 +89,19 @@ public class Game extends Canvas implements Runnable{
                 g.drawString(s, 950 - textWidth / 2, 200);
             }
             else if(keyNumber==10){
+                phase=2; //Phase 2: hier wird ein Raumschiff gewählt
                 g.setColor(Color.lightGray);
                 g.fillRect(0, 0, 1200, 750);
                 g.drawImage(img_spaceships,0,0,null);
                 g.setFont(new Font("Arial", 2, 48));
-                g.setColor(Color.BLACK);
-                String s = "hier wird das Spiel entstehen!";
+                g.setColor(Color.WHITE);
+                String s = "Wähle dein Raumschiff!";
                 int textWidth = g.getFontMetrics().stringWidth(s);
-                g.drawString(s, WIDTH/2 - textWidth / 2, 200);
+                g.drawString(s, WIDTH/2 - textWidth / 2, 100);
+
+                for(ClickArea b: button_select){
+                    b.render(g);
+                }
             }
             g.dispose();
             bs.show();
