@@ -20,7 +20,7 @@ public class MouseHandler implements MouseListener {
     public void mousePressed(MouseEvent e) {
         for(int i=0;i<Game.button_select.length;i++) {
             if (ClickArea.checkCollision(e.getX(), e.getY(), Game.button_select[i])&&Game.phase==2){
-                selectedButton=i;
+                selectedButton=i+1;
                 Game.spaceshipSelected=true;
                 //ObjectHandler.addObject(Game.spaceship);
             }

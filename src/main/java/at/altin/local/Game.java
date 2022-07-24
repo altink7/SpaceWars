@@ -110,7 +110,7 @@ public class Game extends Canvas implements Runnable{
                 g.setColor(Color.lightGray);
                 g.fillRect(0, 0, 1200, 750);
                 g.setFont(new Font("Arial", 2, 48));
-                g.setColor(Color.WHITE);
+                g.setColor(Color.BLACK);
                 String s = "Schritt3, Schiff "+MouseHandler.selectedButton+"gewählt!";
                 int textWidth = g.getFontMetrics().stringWidth(s);
                 g.drawString(s, WIDTH/2 - textWidth / 2, 100);
