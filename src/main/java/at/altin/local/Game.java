@@ -67,6 +67,7 @@ public class Game extends Canvas implements Runnable{
         img_welcome = GraphicsLoader.readGraphics("C:\\Users\\User\\IdeaProjects\\NewGame\\src\\main\\java\\at\\altin\\local\\pictures\\welcome_rev1.png");
         img_spaceships = GraphicsLoader.readGraphics("C:\\Users\\User\\IdeaProjects\\NewGame\\src\\main\\java\\at\\altin\\local\\pictures\\spaceships.png");
         img_button=GraphicsLoader.readGraphics("C:\\Users\\User\\IdeaProjects\\NewGame\\src\\main\\java\\at\\altin\\local\\pictures\\button.png");
+
         int xValue=10;
         for(int i =0;i< button_select.length;i++) {
             button_select[i] = new ClickArea(xValue, 600, 150, 85, img_button);
@@ -103,8 +104,8 @@ public class Game extends Canvas implements Runnable{
             else if(spaceshipSelected){
                 phase=3; //Phase 2: hier wird ein Raumschiff gewählt
                 StaticSlides p2= new StaticSlides(Color.lightGray,1200,750,"Arial", 2,48,
-                        Color.WHITE,"Schritt3, Schiff "+MouseHandler.selectedButton+"gewählt!",0,
-                        WIDTH/2 - g.getFontMetrics().stringWidth("Schritt3, Schiff "+MouseHandler.selectedButton+"gewählt!") / 2,100);
+                        Color.WHITE,"Schritt3, Schiff "+MouseHandler.selectedButton+" gewählt!",0,
+                        WIDTH/2 - g.getFontMetrics().stringWidth("Schritt3, Schiff "+MouseHandler.selectedButton+" gewählt!") / 2,100);
                 p2.drawGraphics(g);
 
             }

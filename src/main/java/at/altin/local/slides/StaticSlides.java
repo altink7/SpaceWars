@@ -62,14 +62,6 @@ public class StaticSlides {
         g.drawString(s, drawStringX - textW / 2, drawStringY);
     }
 
-    public void drawGraphics_noImg(Graphics g){
-        g.fillRect(0, 0, windowWidth, windowHeight);
-        g.setFont(new Font(font, fontStyle, fontSize));
-        g.setColor(color);
-        String s = message;
-        int textW = g.getFontMetrics().stringWidth(s);
-        g.drawString(s, drawStringX - textW / 2, drawStringY);
-    }
 
 
     public int getWindowWidth() {
