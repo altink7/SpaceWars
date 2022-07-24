@@ -1,9 +1,11 @@
 package at.altin.local;
 import at.altin.local.display.ClickArea;
 import at.altin.local.display.Window;
+import at.altin.local.gameObjects.Spaceship;
 import at.altin.local.handlers.KeyHandler;
 import at.altin.local.handlers.MouseHandler;
 import at.altin.local.handlers.ObjectHandler;
+import at.altin.local.levels.level1;
 import at.altin.local.service.GraphicsLoader;
 
 import javax.imageio.ImageIO;
@@ -25,6 +27,7 @@ public class Game extends Canvas implements Runnable{
     public static BufferedImage img_button;
     public static boolean spaceshipSelected;
     public static ClickArea[] button_select = new ClickArea[4];
+    public static Spaceship spaceship;
     public static int score;
     Thread thread;
     public ServerSocket serverSocket;
@@ -68,7 +71,6 @@ public class Game extends Canvas implements Runnable{
             button_select[i] = new ClickArea(xValue, 600, 150, 85, img_button);
             xValue+=295;
         }
-
     }
 
     public void render() {
@@ -78,7 +80,7 @@ public class Game extends Canvas implements Runnable{
         } else {
             Graphics g = bs.getDrawGraphics();
             ObjectHandler.render(g);
-            if(keyNumber==0) {
+            if(keyNumber==0&&!spaceshipSelected) {
                 phase=1; // Phase 1 ist Startbildschirm
                 g.fillRect(0, 0, 1200, 750);
                 g.drawImage(img_welcome, 0, 0, null);
@@ -88,7 +90,7 @@ public class Game extends Canvas implements Runnable{
                 int textWidth = g.getFontMetrics().stringWidth(s);
                 g.drawString(s, 950 - textWidth / 2, 200);
             }
-            else if(keyNumber==10){
+            else if(keyNumber==10&&!spaceshipSelected){
                 phase=2; //Phase 2: hier wird ein Raumschiff gewählt
                 g.setColor(Color.lightGray);
                 g.fillRect(0, 0, 1200, 750);
@@ -102,6 +104,16 @@ public class Game extends Canvas implements Runnable{
                 for(ClickArea b: button_select){
                     b.render(g);
                 }
+            }
+            else if(spaceshipSelected){
+                phase=3; //Phase 2: hier wird ein Raumschiff gewählt
+                g.setColor(Color.lightGray);
+                g.fillRect(0, 0, 1200, 750);
+                g.setFont(new Font("Arial", 2, 48));
+                g.setColor(Color.WHITE);
+                String s = "Schritt3, Schiff "+MouseHandler.selectedButton+"gewählt!";
+                int textWidth = g.getFontMetrics().stringWidth(s);
+                g.drawString(s, WIDTH/2 - textWidth / 2, 100);
             }
             g.dispose();
             bs.show();
