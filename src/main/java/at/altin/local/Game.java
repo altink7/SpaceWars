@@ -51,7 +51,7 @@ public class Game extends Canvas implements Runnable{
         score=0;
         gameover=false;
         running=true;
-        img_welcome = GraphicsLoader.readGraphics("C:\\Users\\User\\IdeaProjects\\NewGame\\welcome.png");
+        img_welcome = GraphicsLoader.readGraphics("C:\\Users\\User\\IdeaProjects\\NewGame\\src\\main\\java\\at\\altin\\local\\pictures\\welcome.png");
     }
 
     public void render() {
