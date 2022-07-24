@@ -12,6 +12,7 @@ public class GraphicsLoader {
 
     public static BufferedImage loadGraphics(String path) {
         BufferedImage image = null;
+
         try {
             image = ImageIO.read(ResourceLoader.load("/" + path));
         } catch (IOException e) {
@@ -19,6 +20,8 @@ public class GraphicsLoader {
         }
         return image;
     }
+
+
     public static BufferedImage readGraphics(String path) {
         BufferedImage image = null;
         try {
