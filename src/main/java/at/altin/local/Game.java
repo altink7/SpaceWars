@@ -9,8 +9,6 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.ServerSocket;
 import java.net.URL;
 
@@ -21,6 +19,7 @@ public class Game extends Canvas implements Runnable{
     public boolean running;
     public static boolean gameover;
     public static BufferedImage img_welcome;
+    public static BufferedImage img_spaceships;
     public static int score;
     Thread thread;
     public ServerSocket serverSocket;
@@ -57,6 +56,7 @@ public class Game extends Canvas implements Runnable{
         gameover=false;
         running=true;
         img_welcome = GraphicsLoader.readGraphics("C:\\Users\\User\\IdeaProjects\\NewGame\\src\\main\\java\\at\\altin\\local\\pictures\\welcome_rev1.png");
+        img_spaceships = GraphicsLoader.readGraphics("C:\\Users\\User\\IdeaProjects\\NewGame\\src\\main\\java\\at\\altin\\local\\pictures\\spaceships.jpg");
         //img_welcome =GraphicsLoader.loadGraphics("welcome.png");
     }
 
@@ -79,6 +79,7 @@ public class Game extends Canvas implements Runnable{
             else if(keyNumber==10){
                 g.setColor(Color.lightGray);
                 g.fillRect(0, 0, 1200, 750);
+                g.drawImage(img_spaceships,0,0,null);
                 g.setFont(new Font("Arial", 2, 48));
                 g.setColor(Color.BLACK);
                 String s = "hier wird das Spiel entstehen!";
