@@ -7,6 +7,7 @@ import at.altin.local.handlers.MouseHandler;
 import at.altin.local.handlers.ObjectHandler;
 import at.altin.local.levels.level1;
 import at.altin.local.service.GraphicsLoader;
+import at.altin.local.slides.StaticSlides;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -62,7 +63,7 @@ public class Game extends Canvas implements Runnable{
     public void init() {
         score=0;
         gameover=false;
-        running=true;
+        running=true; //Bilder werden vorübergehend durch Absolut-Path geladen
         img_welcome = GraphicsLoader.readGraphics("C:\\Users\\User\\IdeaProjects\\NewGame\\src\\main\\java\\at\\altin\\local\\pictures\\welcome_rev1.png");
         img_spaceships = GraphicsLoader.readGraphics("C:\\Users\\User\\IdeaProjects\\NewGame\\src\\main\\java\\at\\altin\\local\\pictures\\spaceships.png");
         img_button=GraphicsLoader.readGraphics("C:\\Users\\User\\IdeaProjects\\NewGame\\src\\main\\java\\at\\altin\\local\\pictures\\button.png");
@@ -82,24 +83,18 @@ public class Game extends Canvas implements Runnable{
             ObjectHandler.render(g);
             if(keyNumber==0&&!spaceshipSelected) {
                 phase=1; // Phase 1 ist Startbildschirm
-                g.fillRect(0, 0, 1200, 750);
-                g.drawImage(img_welcome, 0, 0, null);
-                g.setFont(new Font("Arial", 1, 48));
-                g.setColor(Color.WHITE);
-                String s = "Press Space";
-                int textWidth = g.getFontMetrics().stringWidth(s);
-                g.drawString(s, 950 - textWidth / 2, 200);
+
+                StaticSlides p1 = new StaticSlides(Color.lightGray,1200,750,img_welcome,0,0,"Arial",
+                        1,48,Color.WHITE,"Press Space",0,950,200);
+                p1.drawGraphics(g);
+
             }
             else if(keyNumber==10&&!spaceshipSelected){
                 phase=2; //Phase 2: hier wird ein Raumschiff gewählt
-                g.setColor(Color.lightGray);
-                g.fillRect(0, 0, 1200, 750);
-                g.drawImage(img_spaceships,0,0,null);
-                g.setFont(new Font("Arial", 2, 48));
-                g.setColor(Color.WHITE);
-                String s = "Wähle dein Raumschiff!";
-                int textWidth = g.getFontMetrics().stringWidth(s);
-                g.drawString(s, WIDTH/2 - textWidth / 2, 100);
+
+                StaticSlides p2= new StaticSlides(Color.lightGray,1200,750,img_spaceships,0,0,"Arial", 2,48,
+                        Color.WHITE,"Wähle dein Raumschiff!",0,WIDTH/2 - g.getFontMetrics().stringWidth("Wähle dein Raumschiff!") / 2,100);
+                p2.drawGraphics(g);
 
                 for(ClickArea b: button_select){
                     b.render(g);
@@ -107,13 +102,11 @@ public class Game extends Canvas implements Runnable{
             }
             else if(spaceshipSelected){
                 phase=3; //Phase 2: hier wird ein Raumschiff gewählt
-                g.setColor(Color.lightGray);
-                g.fillRect(0, 0, 1200, 750);
-                g.setFont(new Font("Arial", 2, 48));
-                g.setColor(Color.BLACK);
-                String s = "Schritt3, Schiff "+MouseHandler.selectedButton+"gewählt!";
-                int textWidth = g.getFontMetrics().stringWidth(s);
-                g.drawString(s, WIDTH/2 - textWidth / 2, 100);
+                StaticSlides p2= new StaticSlides(Color.lightGray,1200,750,"Arial", 2,48,
+                        Color.WHITE,"Schritt3, Schiff "+MouseHandler.selectedButton+"gewählt!",0,
+                        WIDTH/2 - g.getFontMetrics().stringWidth("Schritt3, Schiff "+MouseHandler.selectedButton+"gewählt!") / 2,100);
+                p2.drawGraphics(g);
+
             }
             g.dispose();
             bs.show();
