@@ -31,6 +31,8 @@ public class Game extends Canvas implements Runnable{
     Thread thread;
     public ServerSocket serverSocket;
     public static int keyNumber=0;
+    public Spaceship ship= new Spaceship(WIDTH/2-50,550);
+    level1 l1= new level1(ship);
 
     /***JavaDoc
      * -Hier wird das Spiel ausgeführt
@@ -101,7 +103,8 @@ public class Game extends Canvas implements Runnable{
             }
             else if(spaceshipSelected){
                 phase=3; //Phase 3:level1
-                level1 l1= new level1(new Spaceship(MouseHandler.selectedButton));
+                ship.setImg_spaceship(MouseHandler.selectedButton);
+                l1.setSpaceship(ship);
                 l1.drawGraphics(g);
 
             }
