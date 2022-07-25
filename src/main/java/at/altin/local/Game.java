@@ -5,6 +5,7 @@ import at.altin.local.gameObjects.Spaceship;
 import at.altin.local.handlers.KeyHandler;
 import at.altin.local.handlers.MouseHandler;
 import at.altin.local.handlers.ObjectHandler;
+import at.altin.local.levels.level1;
 import at.altin.local.service.GraphicsLoader;
 import at.altin.local.slides.StaticSlide;
 
@@ -99,11 +100,8 @@ public class Game extends Canvas implements Runnable{
                 }
             }
             else if(spaceshipSelected){
-                phase=3; //Phase 2: hier wird ein Raumschiff gewählt
-                StaticSlide p2= new StaticSlide(Color.lightGray,1200,750,"Arial", 2,48,
-                        Color.WHITE,"Schritt3, Schiff "+MouseHandler.selectedButton+" gewählt!",0,
-                        WIDTH/2 - g.getFontMetrics().stringWidth("Schritt3, Schiff "+MouseHandler.selectedButton+" gewählt!") / 2,100);
-                p2.drawGraphics(g);
+                phase=3; //Phase 3:level1
+                level1 l1= new level1(new Spaceship(MouseHandler.selectedButton));
 
             }
             g.dispose();
