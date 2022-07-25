@@ -2,7 +2,7 @@ package at.altin.local.slides;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class StaticSlides {
+public class StaticSlide {
     int windowWidth;
     int windowHeight;
     Color fillColor;
@@ -18,10 +18,10 @@ public class StaticSlides {
     int drawStringX;
     int drawStringY;
 
-    public StaticSlides() {
+    public StaticSlide() {
     }
 
-    public StaticSlides(Color fillColor, int windowWidth, int windowHeight, String font, int fontStyle, int fontSize, Color color, String message, int textWidth, int drawStringX, int drawStringY) {
+    public StaticSlide(Color fillColor, int windowWidth, int windowHeight, String font, int fontStyle, int fontSize, Color color, String message, int textWidth, int drawStringX, int drawStringY) {
         this.windowWidth = windowWidth;
         this.windowHeight = windowHeight;
         this.font = font;
@@ -35,7 +35,7 @@ public class StaticSlides {
         this.fillColor =fillColor;
     }
 
-    public StaticSlides(Color fillColor, int windowWidth, int windowHeight, BufferedImage image, int imageX, int imageY, String font, int fontStyle, int fontSize, Color color, String message, int textWidth, int drawStringX, int drawStringY) {
+    public StaticSlide(Color fillColor, int windowWidth, int windowHeight, BufferedImage image, int imageX, int imageY, String font, int fontStyle, int fontSize, Color color, String message, int textWidth, int drawStringX, int drawStringY) {
         this.windowWidth = windowWidth;
         this.windowHeight = windowHeight;
         this.image = image;

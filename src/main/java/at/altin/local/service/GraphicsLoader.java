@@ -25,10 +25,25 @@ public class GraphicsLoader {
     public static BufferedImage readGraphics(String path) {
         BufferedImage image = null;
         try {
-            image = ImageIO.read(new File(path));
+            image = ImageIO.read(new File(setPath(path)));
         } catch (IOException e) {
             e.printStackTrace();
         }
         return image;
+    }
+
+    /***
+     *
+     * @param name
+     * @return
+     *
+     * name = Projektpfad
+     */
+
+    public static String setPath(String name){
+        //hier Pfad anpassen
+        String projectPath= "C:\\Users\\User\\IdeaProjects\\NewGame\\src\\main\\java\\at\\altin\\local\\pictures\\";
+
+        return projectPath+name;
     }
 }
