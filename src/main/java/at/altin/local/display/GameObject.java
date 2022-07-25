@@ -17,6 +17,10 @@ public abstract class GameObject {
         this.height = height;
     }
 
+    public GameObject() {
+
+    }
+
     public abstract void tick();
 
     public abstract void render(Graphics var1);

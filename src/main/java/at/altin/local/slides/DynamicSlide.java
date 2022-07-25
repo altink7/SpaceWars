@@ -1,4 +1,4 @@
 package at.altin.local.slides;
 
-public class DynamicSlides {
+public class DynamicSlide {
 }
