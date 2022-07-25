@@ -61,19 +61,19 @@ public class Spaceship extends GameObject {
     public void moveSpaceship(){
         int keyEvent = Game.keyNumber;
         if(keyEvent==2){
-            yVal+=5;
+            yVal+=7;
             //Game.keyNumber=0;
         }
         if(keyEvent==4){
-            xVal-=5;
+            xVal-=7;
             //Game.keyNumber=0;
         }
         if(keyEvent==8){
-            yVal-=5;
+            yVal-=7;
             //Game.keyNumber=0;
         }
         if(keyEvent==6){
-            xVal+=5;
+            xVal+=7;
             //Game.keyNumber=0;
         }
     }
