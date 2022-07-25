@@ -54,12 +54,7 @@ public class StaticSlide {
 
     public void drawGraphics(Graphics g){
         g.fillRect(0, 0, windowWidth, windowHeight);
-        g.drawImage(image, imageX, imageY, null);
-        g.setFont(new Font(font, fontStyle, fontSize));
-        g.setColor(color);
-        String s = message;
-        int textW = g.getFontMetrics().stringWidth(s);
-        g.drawString(s, drawStringX - textW / 2, drawStringY);
+        drawLevel(g);
     }
 
     public void drawLevel(Graphics g){
