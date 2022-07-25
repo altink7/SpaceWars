@@ -102,6 +102,7 @@ public class Game extends Canvas implements Runnable{
             else if(spaceshipSelected){
                 phase=3; //Phase 3:level1
                 level1 l1= new level1(new Spaceship(MouseHandler.selectedButton));
+                l1.drawGraphics(g);
 
             }
             g.dispose();

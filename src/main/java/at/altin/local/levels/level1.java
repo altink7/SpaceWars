@@ -1,25 +1,27 @@
 package at.altin.local.levels;
+import at.altin.local.Game;
 import at.altin.local.gameObjects.Spaceship;
 import at.altin.local.handlers.ObjectHandler;
+import at.altin.local.service.GraphicsLoader;
 import at.altin.local.slides.StaticSlide;
 
 import java.awt.*;
 
 
 public class level1 extends Canvas {
-    Spaceship spaceship =new Spaceship();
+    Spaceship spaceship;
     int gameover;
     int score;
 
     public level1(Spaceship spaceship){
-        this.spaceship=spaceship;
+        this.spaceship=new Spaceship(spaceship);
     }
 
 
-    StaticSlide level1 = new StaticSlide(Color.lightGray,1200,750, spaceship.img_spaceship, 0,0,"Arial", 2,48,
-            Color.WHITE,"Wähle dein Raumschiff!",0,WIDTH/2,100);
-
     public void drawGraphics(Graphics g){
-        level1.drawGraphics(g);
+        StaticSlide level1 = new StaticSlide(Color.lightGray,1200,750, this.spaceship.img_spaceship, Game.WIDTH/2-50,550,"Arial", 2,48,
+                Color.WHITE," ",0,100,100);
+        g.drawImage(GraphicsLoader.readGraphics("level1_background.png"),0,0,null);
+        level1.drawLevel(g);
     }
 }

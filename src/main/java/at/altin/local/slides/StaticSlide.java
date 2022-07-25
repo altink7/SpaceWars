@@ -62,6 +62,16 @@ public class StaticSlide {
         g.drawString(s, drawStringX - textW / 2, drawStringY);
     }
 
+    public void drawLevel(Graphics g){
+        g.drawImage(image, imageX, imageY, null);
+        g.setFont(new Font(font, fontStyle, fontSize));
+        g.setColor(color);
+        String s = message;
+        int textW = g.getFontMetrics().stringWidth(s);
+        g.drawString(s, drawStringX - textW / 2, drawStringY);
+    }
+
+
 
 
     public int getWindowWidth() {

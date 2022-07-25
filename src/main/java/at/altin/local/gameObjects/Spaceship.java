@@ -21,6 +21,10 @@ public class Spaceship extends GameObject {
         this.img_spaceship =GraphicsLoader.readGraphics("spaceship_"+n+".png");
     }
 
+    public Spaceship(Spaceship other){
+        this.img_spaceship =other.img_spaceship;
+    }
+
 
     public Spaceship(int x, int y, int width, int height) {
         super(x, y, width, height);
