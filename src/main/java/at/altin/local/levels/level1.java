@@ -1,4 +1,5 @@
 package at.altin.local.levels;
+import at.altin.local.Game;
 import at.altin.local.gameObjects.Enemy;
 import at.altin.local.gameObjects.Item;
 import at.altin.local.gameObjects.Spaceship;
@@ -35,5 +36,11 @@ public class level1 extends Canvas {
                 Color.WHITE," ",0,100,100);
         g.drawImage(GraphicsLoader.readGraphics("level1_background.png"),0,0,null);
         level1.drawLevel(g);
+
+        //Test for 10 Enemys
+        for(int i=0;i<10;i++) {
+            enemys.add(new Enemy(Game.WIDTH-180-i*100, 100, 80, 86));
+            enemys.get(i).initEnemy(g);
+        }
     }
 }
