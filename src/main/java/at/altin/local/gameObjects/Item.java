@@ -15,9 +15,9 @@ public class Item extends GameObject {
         super(x, y, width, height);
     }
 
-    public Item(int x, int y) {
-        this.x=x;
-        this.y=y;
+    public Item(Spaceship spaceship) {
+        setX(spaceship.xVal+image.getWidth()/2);
+        setY(spaceship.yVal-image.getHeight());
         this.width=image.getWidth();
         this.height=image.getHeight();
     }
@@ -29,15 +29,11 @@ public class Item extends GameObject {
         this.image = image;
     }
 
-    public void initFire(Spaceship spaceship, Graphics g){
-            setX(spaceship.xVal+image.getWidth());
-            setY(spaceship.yVal-image.getHeight());
-            setWidth(image.getWidth());
-            setHeight(image.getHeight());
-            setImage(image);
-
+    public void initFire(Graphics g){
             g.drawImage(image,getX(),getY(),null);
-
+    }
+    public void updateY(int fireSpeed){
+            setY(y-=fireSpeed);
     }
 
 
