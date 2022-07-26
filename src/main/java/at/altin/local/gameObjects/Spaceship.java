@@ -12,8 +12,8 @@ public class Spaceship extends GameObject {
     public int xVal;
     public int yVal;
     public BufferedImage img_spaceship;
-    public Item[] fire = new Item[100];// nur 100 amo, sonst gameover
-    public BufferedImage img_fire;
+    //public Item[] fire = new Item[100];// nur 100 amo, sonst gameover
+    //public BufferedImage img_fire;
 
     public Spaceship(){
 
@@ -51,16 +51,6 @@ public class Spaceship extends GameObject {
         this.img_spaceship = newImage;
         this.width= newImage.getWidth();
         this.height= newImage.getHeight();
-    }
-
-    public void initFire(Graphics g){
-        img_fire = GraphicsLoader.readGraphics("spaceship_fire.png");
-        int yValue=this.yVal-img_fire.getHeight();
-
-        for(int i=0;i<fire.length;i++){
-            fire[i]=new Item(this.xVal+img_fire.getWidth(),yValue, img_fire.getWidth(), img_fire.getHeight(),img_fire);
-            g.drawImage(fire[i].image,fire[i].getX(),fire[i].getY(),null);
-        }
     }
 
     public void checkCollisions(){

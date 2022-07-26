@@ -32,7 +32,5 @@ public class level1 extends Canvas {
                 Color.WHITE," ",0,100,100);
         g.drawImage(GraphicsLoader.readGraphics("level1_background.png"),0,0,null);
         level1.drawLevel(g);
-        spaceship.initFire(g);
-
     }
 }
