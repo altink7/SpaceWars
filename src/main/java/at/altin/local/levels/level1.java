@@ -1,15 +1,19 @@
 package at.altin.local.levels;
-import at.altin.local.Game;
+import at.altin.local.gameObjects.Enemy;
+import at.altin.local.gameObjects.Item;
 import at.altin.local.gameObjects.Spaceship;
-import at.altin.local.handlers.ObjectHandler;
 import at.altin.local.service.GraphicsLoader;
 import at.altin.local.slides.StaticSlide;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class level1 extends Canvas {
     Spaceship spaceship;
+    List<Item> items= new ArrayList<>();
+    List<Enemy> enemys = new ArrayList<>();
     int gameover;
     int score;
 
