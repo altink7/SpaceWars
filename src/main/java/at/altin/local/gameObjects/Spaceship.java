@@ -50,32 +50,35 @@ public class Spaceship extends GameObject {
 
     }
 
-    public int checkBorders(){
-        //checkt die Grenzen und sagt in welche richtung man nicht mehr gehen kann
+    public int checkBordersX(){
+        //checkt die Grenzen und sagt in welche richtung man nicht mehr gehen kann-X-Achse
 
         if(xVal < 0 ) return 1;
         if(xVal > Game.WIDTH-100) return 2;
-        if(yVal < 0) return 3;
-        if(yVal > Game.HEIGHT-150) return 4;
-
             return 0;
+    }
+    public int checkBordersY(){
+        //checkt die Grenzen und sagt in welche richtung man nicht mehr gehen kann-Y-Achse
+        if(yVal < 0) return 1;
+        if(yVal > Game.HEIGHT-150) return 2;
+        return 0;
     }
 
     public void moveSpaceship(){
             int keyEvent=Game.keyNumber;
-            if (keyEvent==2&&checkBorders()!=4) {
+            if (keyEvent==2&&checkBordersY()!=2) {
                 yVal += 7;
                 //Game.keyNumber=0;
             }
-            if (keyEvent==4&&checkBorders()!=1) {
+            if (keyEvent==4&&checkBordersX()!=1) {
                 xVal -= 7;
                 //Game.keyNumber=0;
             }
-            if (keyEvent==8&&checkBorders()!=3) {
+            if (keyEvent==8&&checkBordersY()!=1) {
                 yVal -= 7;
                 //Game.keyNumber=0;
             }
-            if (keyEvent==6&&checkBorders()!=2) {
+            if (keyEvent==6&&checkBordersX()!=2) {
                 xVal += 7;
                 //Game.keyNumber=0;
             }
