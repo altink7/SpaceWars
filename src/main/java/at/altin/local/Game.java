@@ -7,14 +7,12 @@ import at.altin.local.handlers.MouseHandler;
 import at.altin.local.handlers.ObjectHandler;
 import at.altin.local.levels.level1;
 import at.altin.local.service.GraphicsLoader;
-import at.altin.local.slides.StaticSlides;
+import at.altin.local.slides.StaticSlide;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.net.ServerSocket;
-import java.net.URL;
 
 
 public class Game extends Canvas implements Runnable{
@@ -33,6 +31,8 @@ public class Game extends Canvas implements Runnable{
     Thread thread;
     public ServerSocket serverSocket;
     public static int keyNumber=0;
+    public Spaceship ship= new Spaceship(WIDTH/2-50,550);
+    level1 l1= new level1(ship);
 
     /***JavaDoc
      * -Hier wird das Spiel ausgeführt
@@ -64,9 +64,9 @@ public class Game extends Canvas implements Runnable{
         score=0;
         gameover=false;
         running=true; //Bilder werden vorübergehend durch Absolut-Path geladen
-        img_welcome = GraphicsLoader.readGraphics("C:\\Users\\User\\IdeaProjects\\NewGame\\src\\main\\java\\at\\altin\\local\\pictures\\welcome_rev1.png");
-        img_spaceships = GraphicsLoader.readGraphics("C:\\Users\\User\\IdeaProjects\\NewGame\\src\\main\\java\\at\\altin\\local\\pictures\\spaceships.png");
-        img_button=GraphicsLoader.readGraphics("C:\\Users\\User\\IdeaProjects\\NewGame\\src\\main\\java\\at\\altin\\local\\pictures\\button.png");
+        img_welcome = GraphicsLoader.readGraphics("welcome_rev1.png");
+        img_spaceships = GraphicsLoader.readGraphics("spaceships.png");
+        img_button=GraphicsLoader.readGraphics("button.png");
 
         int xValue=10;
         for(int i =0;i< button_select.length;i++) {
@@ -85,7 +85,7 @@ public class Game extends Canvas implements Runnable{
             if(keyNumber==0&&!spaceshipSelected) {
                 phase=1; // Phase 1 ist Startbildschirm
 
-                StaticSlides p1 = new StaticSlides(Color.lightGray,1200,750,img_welcome,0,0,"Arial",
+                StaticSlide p1 = new StaticSlide(Color.lightGray,1200,750,img_welcome,0,0,"Arial",
                         1,48,Color.WHITE,"Press Space",0,950,200);
                 p1.drawGraphics(g);
 
@@ -93,7 +93,7 @@ public class Game extends Canvas implements Runnable{
             else if(keyNumber==10&&!spaceshipSelected){
                 phase=2; //Phase 2: hier wird ein Raumschiff gewählt
 
-                StaticSlides p2= new StaticSlides(Color.lightGray,1200,750,img_spaceships,0,0,"Arial", 2,48,
+                StaticSlide p2= new StaticSlide(Color.lightGray,1200,750,img_spaceships,0,0,"Arial", 2,48,
                         Color.WHITE,"Wähle dein Raumschiff!",0,WIDTH/2 - g.getFontMetrics().stringWidth("Wähle dein Raumschiff!") / 2,100);
                 p2.drawGraphics(g);
 
@@ -102,11 +102,10 @@ public class Game extends Canvas implements Runnable{
                 }
             }
             else if(spaceshipSelected){
-                phase=3; //Phase 2: hier wird ein Raumschiff gewählt
-                StaticSlides p2= new StaticSlides(Color.lightGray,1200,750,"Arial", 2,48,
-                        Color.WHITE,"Schritt3, Schiff "+MouseHandler.selectedButton+" gewählt!",0,
-                        WIDTH/2 - g.getFontMetrics().stringWidth("Schritt3, Schiff "+MouseHandler.selectedButton+" gewählt!") / 2,100);
-                p2.drawGraphics(g);
+                phase=3; //Phase 3:level1
+                ship.setImg_spaceship(MouseHandler.selectedButton);
+                l1.setSpaceship(ship);
+                l1.drawGraphics(g);
 
             }
             g.dispose();
