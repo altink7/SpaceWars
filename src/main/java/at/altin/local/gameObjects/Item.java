@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 
 public class Item extends GameObject {
 
-    BufferedImage image;
+    public BufferedImage image;
 
     public Item(int x, int y, int width, int height) {
         super(x, y, width, height);
@@ -17,6 +17,8 @@ public class Item extends GameObject {
         super(x, y, width, height);
         this.image=image;
     }
+
+
 
 
     @Override

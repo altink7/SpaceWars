@@ -5,7 +5,6 @@ import at.altin.local.display.GameObject;
 import at.altin.local.service.GraphicsLoader;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
 public class Spaceship extends GameObject {
@@ -13,26 +12,14 @@ public class Spaceship extends GameObject {
     public int xVal;
     public int yVal;
     public BufferedImage img_spaceship;
+    public Item[] fire = new Item[100];// nur 100 amo, sonst gameover
+    public BufferedImage img_fire;
 
     public Spaceship(){
 
     }
-    public Spaceship(int xVal, int yVal){
-        this.xVal=xVal;
-        this.yVal=yVal;
-    }
-    public Spaceship(int n, int xVal, int yVal){
-        this.img_spaceship =GraphicsLoader.readGraphics("spaceship_"+n+".png");
-        this.xVal=xVal;
-        this.yVal=yVal;
-    }
-
-    public BufferedImage getImg_spaceship() {
-        return img_spaceship;
-    }
-
-    public void setImg_spaceship(int n_img) {
-        this.img_spaceship = GraphicsLoader.readGraphics("spaceship_"+n_img+".png");
+    public Spaceship(int x, int y, int width, int height) {
+        super(x, y, width, height);
     }
 
     public Spaceship(Spaceship other){
@@ -40,10 +27,40 @@ public class Spaceship extends GameObject {
         this.xVal=other.xVal;
         this.yVal=other.yVal;
     }
+    public Spaceship(int xVal, int yVal){
+        this.xVal=xVal;
+        this.yVal=yVal;
+    }
+
+    public Spaceship(int n, int xVal, int yVal){
+        this.img_spaceship =GraphicsLoader.readGraphics("spaceship_"+n+".png");
+        this.xVal=xVal;
+        this.yVal=yVal;
+    }
+
+    //Constructors_ENDE
 
 
-    public Spaceship(int x, int y, int width, int height) {
-        super(x, y, width, height);
+
+    public BufferedImage getImg_spaceship() {
+        return img_spaceship;
+    }
+
+    public void setImg_spaceship(int n_img) {
+        BufferedImage newImage =GraphicsLoader.readGraphics("spaceship_"+n_img+".png");
+        this.img_spaceship = newImage;
+        this.width= newImage.getWidth();
+        this.height= newImage.getHeight();
+    }
+
+    public void initFire(Graphics g){
+        img_fire = GraphicsLoader.readGraphics("spaceship_fire.png");
+        int yValue=this.yVal-img_fire.getHeight();
+
+        for(int i=0;i<fire.length;i++){
+            fire[i]=new Item(this.xVal+img_fire.getWidth(),yValue, img_fire.getWidth(), img_fire.getHeight(),img_fire);
+            g.drawImage(fire[i].image,fire[i].getX(),fire[i].getY(),null);
+        }
     }
 
     public void checkCollisions(){
@@ -53,14 +70,14 @@ public class Spaceship extends GameObject {
     public int checkBordersX(){
         //checkt die Grenzen und sagt in welche richtung man nicht mehr gehen kann-X-Achse
         if(xVal < 0 ) return 1;
-        if(xVal > Game.WIDTH-100) return 2;
+        if(xVal > Game.WIDTH-width) return 2;
             return 0;
     }
 
     public int checkBordersY(){
         //checkt die Grenzen und sagt in welche richtung man nicht mehr gehen kann-Y-Achse
         if(yVal < 0) return 1;
-        if(yVal > Game.HEIGHT-150) return 2;
+        if(yVal > Game.HEIGHT-height) return 2;
         return 0;
     }
 
