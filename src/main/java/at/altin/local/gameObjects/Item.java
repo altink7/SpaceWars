@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 
 public class Item extends GameObject {
 
-    public BufferedImage image=GraphicsLoader.readGraphics("spaceship_fire.png");;
+    public BufferedImage image=GraphicsLoader.readGraphics("spaceship_fire.png");
 
 
     public Item(int x, int y, int width, int height) {
