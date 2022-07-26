@@ -12,8 +12,6 @@ public class Spaceship extends GameObject {
     public int xVal;
     public int yVal;
     public BufferedImage img_spaceship;
-    //public Item[] fire = new Item[100];// nur 100 amo, sonst gameover
-    //public BufferedImage img_fire;
 
     public Spaceship(){
 

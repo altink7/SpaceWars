@@ -1,6 +1,7 @@
 package at.altin.local;
 import at.altin.local.display.ClickArea;
 import at.altin.local.display.Window;
+import at.altin.local.gameObjects.Item;
 import at.altin.local.gameObjects.Spaceship;
 import at.altin.local.handlers.KeyHandler;
 import at.altin.local.handlers.MouseHandler;
@@ -16,6 +17,7 @@ import java.net.ServerSocket;
 
 
 public class Game extends Canvas implements Runnable{
+
     public static int phase =0;
     public static final int WIDTH = 1200;
     public static final int HEIGHT = 750;
@@ -33,6 +35,8 @@ public class Game extends Canvas implements Runnable{
     public static int keyNumber=0;
     public Spaceship ship= new Spaceship(WIDTH/2-50,550);
     level1 l1= new level1(ship);
+    public Item[] fire = new Item[100];// nur 100 amo, sonst gameover
+    public int fireCounter=0;
 
     /***JavaDoc
      * -Hier wird das Spiel ausgeführt
@@ -107,6 +111,13 @@ public class Game extends Canvas implements Runnable{
                 l1.setSpaceship(ship);
                 l1.drawGraphics(g);
 
+                if(fireCounter%4==0){
+                    fire[fireCounter/4]=new Item(ship.getX(),ship.getY());
+                }
+                for(int i=0;i*4<=fireCounter;i++){
+                    fire[i].initFire(ship,g);
+                }
+                fireCounter++;
             }
             g.dispose();
             bs.show();
