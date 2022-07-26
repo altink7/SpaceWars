@@ -52,11 +52,11 @@ public class Spaceship extends GameObject {
 
     public int checkBordersX(){
         //checkt die Grenzen und sagt in welche richtung man nicht mehr gehen kann-X-Achse
-
         if(xVal < 0 ) return 1;
         if(xVal > Game.WIDTH-100) return 2;
             return 0;
     }
+
     public int checkBordersY(){
         //checkt die Grenzen und sagt in welche richtung man nicht mehr gehen kann-Y-Achse
         if(yVal < 0) return 1;
