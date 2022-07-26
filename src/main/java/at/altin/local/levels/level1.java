@@ -12,7 +12,6 @@ import java.util.List;
 
 public class level1 extends Canvas {
     Spaceship spaceship;
-    List<Item> items= new ArrayList<>();
     List<Enemy> enemys = new ArrayList<>();
     int gameover;
     int score;

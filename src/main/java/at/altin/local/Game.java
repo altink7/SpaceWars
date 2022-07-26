@@ -33,7 +33,7 @@ public class Game extends Canvas implements Runnable{
     Thread thread;
     public ServerSocket serverSocket;
     public static int keyNumber=0;
-    public Spaceship ship= new Spaceship(WIDTH/2-50,550);
+    public Spaceship ship= new Spaceship(WIDTH/2-40,550);
     level1 l1= new level1(ship);
     public Item[] fire = new Item[1000];// nur 1000 amo, sonst gameover
     public int fireCounter=0;
@@ -105,33 +105,33 @@ public class Game extends Canvas implements Runnable{
                     b.render(g);
                 }
             }
+            //hier beginnt das eigentliche Spiel!
             else if(spaceshipSelected){
                 phase=3; //Phase 3:level1
                 ship.setImg_spaceship(MouseHandler.selectedButton);
                 l1.setSpaceship(ship);
                 l1.drawGraphics(g);
 
-                showFire(g,7);
+                showFire(g,7,10); //updateSpeed=wie oft es schießen soll(bsp 7: s/FPS*7), fireSpeed= Schussgeschwindigkeit
+
             }
             g.dispose();
             bs.show();
         }
     }
 
-    public void showFire(Graphics g, int speed){
-        for(Item i:fire){
-            if(i!=null)
-            i.updateY(10);
+    public void showFire(Graphics g, int updateSpeed,int fireSpeed) {
+        for (Item i : fire) {
+            if (i != null) i.updateY(fireSpeed);
         }
-
-        if(fireCounter%speed==0){
-            fire[fireCounter/speed]=new Item(ship);
+            if (fireCounter % updateSpeed == 0) {
+                fire[fireCounter / updateSpeed] = new Item(ship);
+            }
+            for (int i = 0; i * updateSpeed <= fireCounter; i++) {
+                fire[i].initFire(g);
+            }
+            fireCounter++;
         }
-        for(int i=0;i*speed<=fireCounter;i++){
-            fire[i].initFire(g);
-        }
-        fireCounter++;
-    }
 
     public void tick() {
         if (!gameover) {
@@ -140,17 +140,12 @@ public class Game extends Canvas implements Runnable{
 
     }
 
-    public void test() {
-    }
-
-
-
     @Override
     public void run() {
         this.init();
         this.requestFocus();
         long pastTime = System.nanoTime();
-        double amountOfTicks = 60.0D;
+        double amountOfTicks = 60.0D; //Frames einstellen
         double ns = 1.0E9D / amountOfTicks;
         double delta = 0.0D;
         long timer = System.currentTimeMillis();

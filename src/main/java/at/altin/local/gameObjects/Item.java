@@ -16,7 +16,7 @@ public class Item extends GameObject {
     }
 
     public Item(Spaceship spaceship) {
-        setX(spaceship.xVal+image.getWidth()/2);
+        setX(spaceship.xVal+image.getWidth()/2+20);
         setY(spaceship.yVal-image.getHeight());
         this.width=image.getWidth();
         this.height=image.getHeight();
@@ -38,12 +38,10 @@ public class Item extends GameObject {
 
 
     @Override
-    public void tick() {
-
+    public void tick(){
     }
 
     @Override
-    public void render(Graphics var1) {
-
+    public void render(Graphics g) {
     }
 }

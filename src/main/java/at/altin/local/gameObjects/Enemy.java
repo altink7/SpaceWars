@@ -15,7 +15,7 @@ public class Enemy extends GameObject {
     }
 
     @Override
-    public void render(Graphics var1) {
+    public void render(Graphics g) {
 
     }
 }

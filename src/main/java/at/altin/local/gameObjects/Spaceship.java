@@ -14,7 +14,6 @@ public class Spaceship extends GameObject {
     public BufferedImage img_spaceship;
 
     public Spaceship(){
-
     }
     public Spaceship(int x, int y, int width, int height) {
         super(x, y, width, height);
@@ -25,6 +24,7 @@ public class Spaceship extends GameObject {
         this.xVal=other.xVal;
         this.yVal=other.yVal;
     }
+
     public Spaceship(int xVal, int yVal){
         this.xVal=xVal;
         this.yVal=yVal;
@@ -37,8 +37,6 @@ public class Spaceship extends GameObject {
     }
 
     //Constructors_ENDE
-
-
 
     public BufferedImage getImg_spaceship() {
         return img_spaceship;
@@ -88,14 +86,14 @@ public class Spaceship extends GameObject {
                 //Game.keyNumber=0;
             }
     }
-    
+
     @Override
     public void tick() {
 
     }
 
     @Override
-    public void render(Graphics var1) {
+    public void render(Graphics g) {
 
     }
 
