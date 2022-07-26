@@ -37,7 +37,7 @@ public class level1 extends Canvas {
         g.drawImage(GraphicsLoader.readGraphics("level1_background.png"),0,0,null);
         level1.drawLevel(g);
 
-        //Test for 10 Enemys
+        //Test for 10 Enemys- Reihe 1
         for(int i=0;i<10;i++) {
             enemys.add(new Enemy(Game.WIDTH-180-i*100, 100, 80, 86));
             enemys.get(i).initEnemy(g);
