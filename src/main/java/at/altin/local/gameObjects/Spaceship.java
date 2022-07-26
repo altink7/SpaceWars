@@ -12,11 +12,8 @@ public class Spaceship extends GameObject {
     public int xVal;
     public int yVal;
     public BufferedImage img_spaceship;
-    //public Item[] fire = new Item[100];// nur 100 amo, sonst gameover
-    //public BufferedImage img_fire;
 
     public Spaceship(){
-
     }
     public Spaceship(int x, int y, int width, int height) {
         super(x, y, width, height);
@@ -27,6 +24,7 @@ public class Spaceship extends GameObject {
         this.xVal=other.xVal;
         this.yVal=other.yVal;
     }
+
     public Spaceship(int xVal, int yVal){
         this.xVal=xVal;
         this.yVal=yVal;
@@ -34,13 +32,11 @@ public class Spaceship extends GameObject {
 
     public Spaceship(int n, int xVal, int yVal){
         this.img_spaceship =GraphicsLoader.readGraphics("spaceship_"+n+".png");
-        this.xVal=xVal;
+        this.xVal = xVal;
         this.yVal=yVal;
     }
 
     //Constructors_ENDE
-
-
 
     public BufferedImage getImg_spaceship() {
         return img_spaceship;
@@ -91,14 +87,13 @@ public class Spaceship extends GameObject {
             }
     }
 
-
     @Override
     public void tick() {
 
     }
 
     @Override
-    public void render(Graphics var1) {
+    public void render(Graphics g) {
 
     }
 

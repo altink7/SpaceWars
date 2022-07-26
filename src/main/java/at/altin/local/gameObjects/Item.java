@@ -8,16 +8,18 @@ import java.awt.image.BufferedImage;
 
 public class Item extends GameObject {
 
-    public BufferedImage image;
+    public BufferedImage image=GraphicsLoader.readGraphics("spaceship_fire.png");
 
 
     public Item(int x, int y, int width, int height) {
         super(x, y, width, height);
     }
 
-    public Item(int x, int y, int width, int height,BufferedImage image) {
-        super(x, y, width, height);
-        this.image=image;
+    public Item(Spaceship spaceship) {
+        setX(spaceship.xVal+image.getWidth()/2+20);
+        setY(spaceship.yVal-image.getHeight());
+        this.width=image.getWidth();
+        this.height=image.getHeight();
     }
     public BufferedImage getImage() {
         return image;
@@ -27,27 +29,19 @@ public class Item extends GameObject {
         this.image = image;
     }
 
-    public void initFire(Spaceship spaceship, Graphics g){
-        image = GraphicsLoader.readGraphics("spaceship_fire.png");
-
-            setX(spaceship.xVal+image.getWidth());
-            setY(spaceship.yVal-image.getHeight());
-            setWidth(image.getWidth());
-            setHeight(image.getHeight());
-            setImage(image);
-
+    public void initFire(Graphics g){
             g.drawImage(image,getX(),getY(),null);
-
+    }
+    public void updateY(int fireSpeed){
+            setY(y-=fireSpeed);
     }
 
 
     @Override
-    public void tick() {
-
+    public void tick(){
     }
 
     @Override
-    public void render(Graphics var1) {
-
+    public void render(Graphics g) {
     }
 }

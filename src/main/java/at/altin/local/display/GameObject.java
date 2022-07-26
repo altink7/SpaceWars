@@ -23,7 +23,7 @@ public abstract class GameObject {
 
     public abstract void tick();
 
-    public abstract void render(Graphics var1);
+    public abstract void render(Graphics g);
 
     public Rectangle getBounds() {
         return new Rectangle(this.x, this.y, this.width, this.height);
