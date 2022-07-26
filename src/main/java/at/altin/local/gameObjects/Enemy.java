@@ -7,19 +7,21 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Enemy extends GameObject {
-    public BufferedImage image= GraphicsLoader.readGraphics("enemy.png");
+    public BufferedImage image = GraphicsLoader.readGraphics("enemy.png");
 
     public Enemy(int x, int y, int width, int height) {
         super(x, y, width, height);
     }
 
+    public void initEnemy(Graphics g) {
+        g.drawImage(image, getX(), getY(), null);
+    }
+
     @Override
     public void tick() {
-
     }
 
     @Override
     public void render(Graphics g) {
-
     }
 }
