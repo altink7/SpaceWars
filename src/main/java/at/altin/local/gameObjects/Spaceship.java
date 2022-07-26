@@ -9,10 +9,6 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
 public class Spaceship extends GameObject {
-    boolean border_top;
-    boolean border_bottom;
-    boolean border_right;
-    boolean border_left;
     boolean running;
     public int xVal;
     public int yVal;
@@ -54,28 +50,35 @@ public class Spaceship extends GameObject {
 
     }
 
-    public void checkBorders(int border_top, int border_bottom, int border_right, int border_left){
+    public int checkBorders(){
+        //checkt die Grenzen und sagt in welche richtung man nicht mehr gehen kann
 
+        if(xVal < 0 ) return 1;
+        if(xVal > Game.WIDTH-100) return 2;
+        if(yVal < 0) return 3;
+        if(yVal > Game.HEIGHT-150) return 4;
+
+            return 0;
     }
 
     public void moveSpaceship(){
-        int keyEvent = Game.keyNumber;
-        if(keyEvent==2){
-            yVal+=7;
-            //Game.keyNumber=0;
-        }
-        if(keyEvent==4){
-            xVal-=7;
-            //Game.keyNumber=0;
-        }
-        if(keyEvent==8){
-            yVal-=7;
-            //Game.keyNumber=0;
-        }
-        if(keyEvent==6){
-            xVal+=7;
-            //Game.keyNumber=0;
-        }
+            int keyEvent=Game.keyNumber;
+            if (keyEvent==2&&checkBorders()!=4) {
+                yVal += 7;
+                //Game.keyNumber=0;
+            }
+            if (keyEvent==4&&checkBorders()!=1) {
+                xVal -= 7;
+                //Game.keyNumber=0;
+            }
+            if (keyEvent==8&&checkBorders()!=3) {
+                yVal -= 7;
+                //Game.keyNumber=0;
+            }
+            if (keyEvent==6&&checkBorders()!=2) {
+                xVal += 7;
+                //Game.keyNumber=0;
+            }
     }
 
 
