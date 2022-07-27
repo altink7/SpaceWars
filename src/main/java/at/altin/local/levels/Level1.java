@@ -11,13 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class level1 extends Canvas {
+public class Level1 extends Canvas {
     Spaceship spaceship;
-    List<Enemy> enemys = new ArrayList<>();
+    public List<Enemy> enemys = new ArrayList<>();
     int gameover;
     int score;
 
-    public level1(Spaceship spaceship){
+    public Level1(Spaceship spaceship){
         this.spaceship=new Spaceship(spaceship);
     }
 
