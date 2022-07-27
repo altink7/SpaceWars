@@ -1,12 +1,13 @@
 package at.altin.local;
 import at.altin.local.display.ClickArea;
 import at.altin.local.display.Window;
+import at.altin.local.gameObjects.Enemy;
 import at.altin.local.gameObjects.Item;
 import at.altin.local.gameObjects.Spaceship;
 import at.altin.local.handlers.KeyHandler;
 import at.altin.local.handlers.MouseHandler;
 import at.altin.local.handlers.ObjectHandler;
-import at.altin.local.levels.level1;
+import at.altin.local.levels.Level1;
 import at.altin.local.service.GraphicsLoader;
 import at.altin.local.slides.StaticSlide;
 
@@ -34,9 +35,11 @@ public class Game extends Canvas implements Runnable{
     public ServerSocket serverSocket;
     public static int keyNumber=0;
     public Spaceship ship= new Spaceship(WIDTH/2-40,550);
-    level1 l1= new level1(ship);
+    Level1 l1= new Level1(ship);
     public Item[] fire = new Item[1000];// nur 1000 amo, sonst gameover
-    public int fireCounter=0;
+    public Item[] enemy_fire = new Item[1000];// nur 1000 amo, sonst gamewin
+    public int fireCounter =0;
+    public int enemyFireCounter =0;
 
     /***JavaDoc
      * -Hier wird das Spiel ausgeführt
@@ -113,6 +116,7 @@ public class Game extends Canvas implements Runnable{
                 l1.drawGraphics(g);
 
                 showFire(g,7,10); //updateSpeed=wie oft es schießen soll(bsp 7: s/FPS*7), fireSpeed= Schussgeschwindigkeit
+                showEnemyFire(g,7*10,10,l1);
 
             }
             g.dispose();
@@ -132,6 +136,22 @@ public class Game extends Canvas implements Runnable{
             }
             fireCounter++;
         }
+    public void showEnemyFire(Graphics g, int updateSpeed,int fireSpeed, Level1 l1) {
+        for (Item i : enemy_fire) {
+            if (i != null) i.updateY(fireSpeed);
+        }
+        if (enemyFireCounter % updateSpeed == 0) {
+            for(int j=0;j<l1.enemys.size();j++) {
+                enemy_fire[enemyFireCounter / updateSpeed] = new Item(l1.enemys.get(j));
+                enemy_fire[enemyFireCounter / updateSpeed].setImage(GraphicsLoader.readGraphics("enemy_fire.png"));
+                enemyFireCounter++;
+            }
+        }
+        for (int i = 0; i * updateSpeed <= enemyFireCounter; i++) {
+                enemy_fire[i].initFire(g);
+        }
+        enemyFireCounter++;
+    }
 
     public void tick() {
         if (!gameover) {

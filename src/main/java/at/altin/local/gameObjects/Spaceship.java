@@ -23,6 +23,7 @@ public class Spaceship extends GameObject {
         this.img_spaceship =other.img_spaceship;
         this.xVal=other.xVal;
         this.yVal=other.yVal;
+        this.running=other.running;
     }
 
     public Spaceship(int xVal, int yVal){

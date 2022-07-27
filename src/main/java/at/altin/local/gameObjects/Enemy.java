@@ -6,7 +6,7 @@ import at.altin.local.service.GraphicsLoader;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Enemy extends GameObject {
+public class Enemy extends Spaceship {
     public BufferedImage image = GraphicsLoader.readGraphics("enemy.png");
 
     public Enemy(int x, int y, int width, int height) {
