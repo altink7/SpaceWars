@@ -39,9 +39,6 @@ public class Game extends Canvas implements Runnable{
     public Spaceship ship= new Spaceship(WIDTH/2-40,550);
     public List<Spaceship> enemy_ships= new LinkedList<>();
     Level1 l1= new Level1(ship);
-    public List<Item> fire = new ArrayList<>();// nur 1000 amo, sonst gameover
-    public int fireCounter =0;
-    public int enemyFireCounter =0;
 
     /***JavaDoc
      * -Hier wird das Spiel ausgeführt
@@ -123,9 +120,10 @@ public class Game extends Canvas implements Runnable{
                 l1.setEnemys(enemy_ships);
                 l1.drawGraphics(g);
 
-                showFire(g,7,10,ship); //updateSpeed=wie oft es schießen soll(bsp 7: s/FPS*7), fireSpeed= Schussgeschwindigkeit
-
-
+                ship.showFire(g,7,10); //updateSpeed=wie oft es schießen soll(bsp 7: s/FPS*7), fireSpeed= Schussgeschwindigkeit
+                for(Spaceship e:enemy_ships){
+                    e.showFire(g,20,-10);
+                }
 
             }
             g.dispose();
@@ -133,18 +131,6 @@ public class Game extends Canvas implements Runnable{
         }
     }
 
-    public void showFire(Graphics g, int updateSpeed,int fireSpeed, Spaceship s) {
-        for (Item i : fire) {
-            if (i != null) i.updateY(fireSpeed);
-        }
-            if (fireCounter % updateSpeed == 0) {
-                fire.add(new Item(s));
-            }
-            for (int i = 0; i * updateSpeed <= fireCounter; i++) {
-                fire.get(i).initFire(g);
-            }
-            fireCounter++;
-        }
 
     public void tick() {
         if (!gameover) {

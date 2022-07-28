@@ -6,10 +6,14 @@ import at.altin.local.service.GraphicsLoader;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Spaceship extends GameObject {
     boolean running;
     public BufferedImage img_spaceship;
+    public List<Item> fire = new ArrayList<>();// nur 1000 amo, sonst gameover
+    public int fireCounter =0;
 
     public Spaceship(){
     }
@@ -90,6 +94,20 @@ public class Spaceship extends GameObject {
                 x += 7;
                 //Game.keyNumber=0;
             }
+    }
+
+    public void showFire(Graphics g, int updateSpeed,int fireSpeed) {
+        for (Item i : fire) {
+            if (i != null) i.updateY(fireSpeed);
+        }
+        if (fireCounter % updateSpeed == 0) {
+            fire.add(new Item(this));
+
+        }
+        for (int i = 0; i * updateSpeed <= fireCounter; i++) {
+            fire.get(i).initFire(g);
+        }
+        fireCounter++;
     }
 
     @Override

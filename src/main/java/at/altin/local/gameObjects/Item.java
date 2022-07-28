@@ -21,6 +21,16 @@ public class Item extends GameObject {
         this.width=image.getWidth();
         this.height=image.getHeight();
     }
+    public Item(Spaceship spaceship, BufferedImage img) {
+        setX(spaceship.getX()+image.getWidth()/2+20);
+        setY(spaceship.getY()-image.getHeight());
+        this.width=image.getWidth();
+        this.height=image.getHeight();
+        this.image=img;
+    }
+
+    //Constructors Ende
+
 
     public BufferedImage getImage() {
         return image;
