@@ -31,6 +31,12 @@ public class Spaceship extends GameObject {
         this.yVal=yVal;
     }
 
+    public Spaceship(int xVal, int yVal, BufferedImage img){
+        this.xVal=xVal;
+        this.yVal=yVal;
+        this.img_spaceship=img;
+    }
+
     public Spaceship(int n, int xVal, int yVal){
         this.img_spaceship =GraphicsLoader.readGraphics("spaceship_"+n+".png");
         this.xVal = xVal;

@@ -21,12 +21,7 @@ public class Item extends GameObject {
         this.width=image.getWidth();
         this.height=image.getHeight();
     }
-    public Item(Enemy spaceship) {
-        setX(spaceship.xVal+image.getWidth()/2+20);
-        setY(spaceship.yVal-image.getHeight());
-        this.width=image.getWidth();
-        this.height=image.getHeight();
-    }
+
     public BufferedImage getImage() {
         return image;
     }

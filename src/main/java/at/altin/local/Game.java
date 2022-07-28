@@ -1,7 +1,6 @@
 package at.altin.local;
 import at.altin.local.display.ClickArea;
 import at.altin.local.display.Window;
-import at.altin.local.gameObjects.Enemy;
 import at.altin.local.gameObjects.Item;
 import at.altin.local.gameObjects.Spaceship;
 import at.altin.local.handlers.KeyHandler;
@@ -15,6 +14,8 @@ import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.net.ServerSocket;
+import java.util.LinkedList;
+import java.util.List;
 
 
 public class Game extends Canvas implements Runnable{
@@ -35,6 +36,7 @@ public class Game extends Canvas implements Runnable{
     public ServerSocket serverSocket;
     public static int keyNumber=0;
     public Spaceship ship= new Spaceship(WIDTH/2-40,550);
+    public List<Spaceship> enemy_ships= new LinkedList<Spaceship>();
     Level1 l1= new Level1(ship);
     public Item[] fire = new Item[1000];// nur 1000 amo, sonst gameover
     public Item[] enemy_fire = new Item[1000];// nur 1000 amo, sonst gamewin
@@ -80,6 +82,10 @@ public class Game extends Canvas implements Runnable{
             button_select[i] = new ClickArea(xValue, 600, 150, 85, img_button);
             xValue+=295;
         }
+        for(int i =0;i< 10;i++) {
+            enemy_ships.add(new Spaceship(80,86,GraphicsLoader.readGraphics("enemy.png")));
+        }
+
     }
 
     public void render() {
@@ -113,10 +119,11 @@ public class Game extends Canvas implements Runnable{
                 phase=3; //Phase 3:level1
                 ship.setImg_spaceship(MouseHandler.selectedButton);
                 l1.setSpaceship(ship);
+                l1.setEnemys(enemy_ships);
                 l1.drawGraphics(g);
 
                 showFire(g,7,10); //updateSpeed=wie oft es schießen soll(bsp 7: s/FPS*7), fireSpeed= Schussgeschwindigkeit
-                showEnemyFire(g,7*10,10,l1);
+
 
             }
             g.dispose();
@@ -136,22 +143,19 @@ public class Game extends Canvas implements Runnable{
             }
             fireCounter++;
         }
-    public void showEnemyFire(Graphics g, int updateSpeed,int fireSpeed, Level1 l1) {
+    public void showEnemyFire(Graphics g, int updateSpeed,int fireSpeed) {
         for (Item i : enemy_fire) {
             if (i != null) i.updateY(fireSpeed);
         }
-        if (enemyFireCounter % updateSpeed == 0) {
-            for(int j=0;j<l1.enemys.size();j++) {
-                enemy_fire[enemyFireCounter / updateSpeed] = new Item(l1.enemys.get(j));
-                enemy_fire[enemyFireCounter / updateSpeed].setImage(GraphicsLoader.readGraphics("enemy_fire.png"));
-                enemyFireCounter++;
-            }
+        if (fireCounter % updateSpeed == 0) {
+            fire[fireCounter / updateSpeed] = new Item(ship);
         }
-        for (int i = 0; i * updateSpeed <= enemyFireCounter; i++) {
-                enemy_fire[i].initFire(g);
+        for (int i = 0; i * updateSpeed <= fireCounter; i++) {
+            fire[i].initFire(g);
         }
-        enemyFireCounter++;
+        fireCounter++;
     }
+
 
     public void tick() {
         if (!gameover) {
