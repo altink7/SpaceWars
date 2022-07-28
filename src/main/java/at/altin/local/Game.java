@@ -14,6 +14,7 @@ import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.net.ServerSocket;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -36,10 +37,9 @@ public class Game extends Canvas implements Runnable{
     public ServerSocket serverSocket;
     public static int keyNumber=0;
     public Spaceship ship= new Spaceship(WIDTH/2-40,550);
-    public List<Spaceship> enemy_ships= new LinkedList<Spaceship>();
+    public List<Spaceship> enemy_ships= new LinkedList<>();
     Level1 l1= new Level1(ship);
-    public Item[] fire = new Item[1000];// nur 1000 amo, sonst gameover
-    public Item[] enemy_fire = new Item[1000];// nur 1000 amo, sonst gamewin
+    public List<Item> fire = new ArrayList<>();// nur 1000 amo, sonst gameover
     public int fireCounter =0;
     public int enemyFireCounter =0;
 
@@ -84,6 +84,7 @@ public class Game extends Canvas implements Runnable{
         }
         for(int i =0;i< 10;i++) {
             enemy_ships.add(new Spaceship(80,86,GraphicsLoader.readGraphics("enemy.png")));
+            enemy_ships.get(i).setX(100*(i+1));
         }
 
     }
@@ -122,7 +123,8 @@ public class Game extends Canvas implements Runnable{
                 l1.setEnemys(enemy_ships);
                 l1.drawGraphics(g);
 
-                showFire(g,7,10); //updateSpeed=wie oft es schießen soll(bsp 7: s/FPS*7), fireSpeed= Schussgeschwindigkeit
+                showFire(g,7,10,ship); //updateSpeed=wie oft es schießen soll(bsp 7: s/FPS*7), fireSpeed= Schussgeschwindigkeit
+
 
 
             }
@@ -131,31 +133,18 @@ public class Game extends Canvas implements Runnable{
         }
     }
 
-    public void showFire(Graphics g, int updateSpeed,int fireSpeed) {
+    public void showFire(Graphics g, int updateSpeed,int fireSpeed, Spaceship s) {
         for (Item i : fire) {
             if (i != null) i.updateY(fireSpeed);
         }
             if (fireCounter % updateSpeed == 0) {
-                fire[fireCounter / updateSpeed] = new Item(ship);
+                fire.add(new Item(s));
             }
             for (int i = 0; i * updateSpeed <= fireCounter; i++) {
-                fire[i].initFire(g);
+                fire.get(i).initFire(g);
             }
             fireCounter++;
         }
-    public void showEnemyFire(Graphics g, int updateSpeed,int fireSpeed) {
-        for (Item i : enemy_fire) {
-            if (i != null) i.updateY(fireSpeed);
-        }
-        if (fireCounter % updateSpeed == 0) {
-            fire[fireCounter / updateSpeed] = new Item(ship);
-        }
-        for (int i = 0; i * updateSpeed <= fireCounter; i++) {
-            fire[i].initFire(g);
-        }
-        fireCounter++;
-    }
-
 
     public void tick() {
         if (!gameover) {

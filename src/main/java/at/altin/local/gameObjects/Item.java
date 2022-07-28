@@ -16,8 +16,8 @@ public class Item extends GameObject {
     }
 
     public Item(Spaceship spaceship) {
-        setX(spaceship.xVal+image.getWidth()/2+20);
-        setY(spaceship.yVal-image.getHeight());
+        setX(spaceship.getX()+image.getWidth()/2+20);
+        setY(spaceship.getY()-image.getHeight());
         this.width=image.getWidth();
         this.height=image.getHeight();
     }

@@ -39,10 +39,13 @@ public class Level1 extends Canvas {
     public void drawGraphics(Graphics g) {
         spaceship.moveSpaceship();
 
-        StaticSlide level1 = new StaticSlide(Color.lightGray, 1200, 750, spaceship.img_spaceship, spaceship.xVal, spaceship.yVal, "Arial", 2, 48,
+        StaticSlide level1 = new StaticSlide(Color.lightGray, 1200, 750, spaceship.img_spaceship, spaceship.getX(), spaceship.getY(), "Arial", 2, 48,
                 Color.WHITE, " ", 0, 100, 100);
         g.drawImage(GraphicsLoader.readGraphics("level1_background.png"), 0, 0, null);
         level1.drawLevel(g);
 
+        for(Spaceship e:enemys){
+            g.drawImage(e.img_spaceship,e.getX(),e.getY(),null);
+        }
     }
 }
