@@ -120,9 +120,9 @@ public class Game extends Canvas implements Runnable{
                 l1.setEnemys(enemy_ships);
                 l1.drawGraphics(g);
 
-                ship.showFire(g,7,10); //updateSpeed=wie oft es schießen soll(bsp 7: s/FPS*7), fireSpeed= Schussgeschwindigkeit
+                ship.showFire(g,7,10,GraphicsLoader.readGraphics("spaceship_fire.png")); //updateSpeed=wie oft es schießen soll(bsp 7: s/FPS*7), fireSpeed= Schussgeschwindigkeit
                 for(Spaceship e:enemy_ships){
-                    e.showFire(g,20,-10);
+                    e.showFire(g,20,-10,GraphicsLoader.readGraphics("enemy_fire.png"));
                 }
 
             }
