@@ -6,7 +6,7 @@ import at.altin.local.gameObjects.Spaceship;
 import at.altin.local.handlers.KeyHandler;
 import at.altin.local.handlers.MouseHandler;
 import at.altin.local.handlers.ObjectHandler;
-import at.altin.local.levels.level1;
+import at.altin.local.levels.Level1;
 import at.altin.local.service.GraphicsLoader;
 import at.altin.local.slides.StaticSlide;
 
@@ -14,6 +14,9 @@ import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.net.ServerSocket;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 
 public class Game extends Canvas implements Runnable{
@@ -28,15 +31,13 @@ public class Game extends Canvas implements Runnable{
     public static BufferedImage img_button;
     public static boolean spaceshipSelected;
     public static ClickArea[] button_select = new ClickArea[4];
-    public static Spaceship spaceship;
     public static int score;
     Thread thread;
     public ServerSocket serverSocket;
     public static int keyNumber=0;
     public Spaceship ship= new Spaceship(WIDTH/2-40,550);
-    level1 l1= new level1(ship);
-    public Item[] fire = new Item[1000];// nur 1000 amo, sonst gameover
-    public int fireCounter=0;
+    public List<Spaceship> enemy_ships= new LinkedList<>();
+    Level1 l1= new Level1(ship);
 
     /***JavaDoc
      * -Hier wird das Spiel ausgeführt
@@ -77,6 +78,11 @@ public class Game extends Canvas implements Runnable{
             button_select[i] = new ClickArea(xValue, 600, 150, 85, img_button);
             xValue+=295;
         }
+        for(int i =0;i< 10;i++) {
+            enemy_ships.add(new Spaceship(80,86,GraphicsLoader.readGraphics("enemy.png")));
+            enemy_ships.get(i).setX(100*(i+1));
+        }
+
     }
 
     public void render() {
@@ -110,9 +116,13 @@ public class Game extends Canvas implements Runnable{
                 phase=3; //Phase 3:level1
                 ship.setImg_spaceship(MouseHandler.selectedButton);
                 l1.setSpaceship(ship);
+                l1.setEnemys(enemy_ships);
                 l1.drawGraphics(g);
 
-                showFire(g,7,10); //updateSpeed=wie oft es schießen soll(bsp 7: s/FPS*7), fireSpeed= Schussgeschwindigkeit
+                ship.showFire(g,7,10,GraphicsLoader.readGraphics("spaceship_fire.png"),false); //updateSpeed=wie oft es schießen soll(bsp 7: s/FPS*7), fireSpeed= Schussgeschwindigkeit
+                for(Spaceship e:enemy_ships){
+                    e.showFire(g,30,-10,GraphicsLoader.readGraphics("enemy_fire.png"),true);
+                }
 
             }
             g.dispose();
@@ -120,18 +130,6 @@ public class Game extends Canvas implements Runnable{
         }
     }
 
-    public void showFire(Graphics g, int updateSpeed,int fireSpeed) {
-        for (Item i : fire) {
-            if (i != null) i.updateY(fireSpeed);
-        }
-            if (fireCounter % updateSpeed == 0) {
-                fire[fireCounter / updateSpeed] = new Item(ship);
-            }
-            for (int i = 0; i * updateSpeed <= fireCounter; i++) {
-                fire[i].initFire(g);
-            }
-            fireCounter++;
-        }
 
     public void tick() {
         if (!gameover) {

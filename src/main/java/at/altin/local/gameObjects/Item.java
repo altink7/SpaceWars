@@ -8,19 +8,26 @@ import java.awt.image.BufferedImage;
 
 public class Item extends GameObject {
 
-    public BufferedImage image=GraphicsLoader.readGraphics("spaceship_fire.png");
+    public BufferedImage image;
 
 
     public Item(int x, int y, int width, int height) {
         super(x, y, width, height);
     }
 
-    public Item(Spaceship spaceship) {
-        setX(spaceship.xVal+image.getWidth()/2+20);
-        setY(spaceship.yVal-image.getHeight());
+
+    public Item(Spaceship spaceship, BufferedImage img,boolean enemy) {
+        this.image=img;
         this.width=image.getWidth();
         this.height=image.getHeight();
+        setX(spaceship.getX()+image.getWidth()/2+20);
+        setY(spaceship.getY()-image.getHeight());
+        if(enemy)setY(spaceship.getY()+image.getHeight());
     }
+
+    //Constructors Ende
+
+
     public BufferedImage getImage() {
         return image;
     }
