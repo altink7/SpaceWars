@@ -96,12 +96,12 @@ public class Spaceship extends GameObject {
             }
     }
 
-    public void showFire(Graphics g, int updateSpeed,int fireSpeed,BufferedImage img) {
+    public void showFire(Graphics g, int updateSpeed,int fireSpeed,BufferedImage img,boolean enemy) {
         for (Item i : fire) {
             if (i != null) i.updateY(fireSpeed);
         }
         if (fireCounter % updateSpeed == 0) {
-            fire.add(new Item(this,img));
+            fire.add(new Item(this,img,enemy));
 
         }
         for (int i = 0; i * updateSpeed <= fireCounter; i++) {
