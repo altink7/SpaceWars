@@ -31,7 +31,6 @@ public class Game extends Canvas implements Runnable{
     public static BufferedImage img_button;
     public static boolean spaceshipSelected;
     public static ClickArea[] button_select = new ClickArea[4];
-    public static Spaceship spaceship;
     public static int score;
     Thread thread;
     public ServerSocket serverSocket;
@@ -122,7 +121,7 @@ public class Game extends Canvas implements Runnable{
 
                 ship.showFire(g,7,10,GraphicsLoader.readGraphics("spaceship_fire.png"),false); //updateSpeed=wie oft es schießen soll(bsp 7: s/FPS*7), fireSpeed= Schussgeschwindigkeit
                 for(Spaceship e:enemy_ships){
-                    e.showFire(g,20,-10,GraphicsLoader.readGraphics("enemy_fire.png"),true);
+                    e.showFire(g,30,-10,GraphicsLoader.readGraphics("enemy_fire.png"),true);
                 }
 
             }
