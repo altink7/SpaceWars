@@ -8,12 +8,14 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Spaceship extends GameObject {
     boolean running;
     public BufferedImage img_spaceship;
     public List<Item> fire = new ArrayList<>();// nur 1000 amo, sonst gameover
     public int fireCounter =0;
+    Random random =new Random();
 
     public Spaceship(){
     }
@@ -100,13 +102,17 @@ public class Spaceship extends GameObject {
         for (Item i : fire) {
             if (i != null) i.updateY(fireSpeed);
         }
-        if (fireCounter % updateSpeed == 0) {
-            fire.add(new Item(this,img,enemy));
+        if (fireCounter % updateSpeed == 0){
+            if(!(random.nextBoolean()&&enemy)) {
+                fire.add(new Item(this, img, enemy));
+            }
 
         }
-        for (int i = 0; i * updateSpeed <= fireCounter; i++) {
-            fire.get(i).initFire(g);
+
+        for(Item i:fire){
+            i.initFire(g);
         }
+
         fireCounter++;
     }
 
