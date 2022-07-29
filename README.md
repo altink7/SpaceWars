@@ -97,6 +97,6 @@ Möchten Sie Teil dieses Projekts sein? Klicken Sie [HIER](CONTRIBUTING.md) und 
 
 ## 📝 Lizenz
 
-[MIT](LICENSE.md)
+MIT
 
 [⬆ Zurück nach oben](#SpaceWars)<br>
