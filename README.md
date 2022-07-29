@@ -4,7 +4,7 @@
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/Altink7/README-template?style=for-the-badge)
 ![GitHub language count](https://img.shields.io/github/languages/count/Altink7/README-template?style=for-the-badge)
-![GitHub forks](https://img.shields.io/github/forks/Altink7/README-template?style=for-the-badge)
+![GitHub forks](https://img.shields.io/github/forks/Altink7/README-template?style=for-the-badge)(0)
 ![Bitbucket open issues](https://img.shields.io/bitbucket/issues/Altink7/README-template?style=for-the-badge)
 ![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/Altink7/README-template?style=for-the-badge)
 
