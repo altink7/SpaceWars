@@ -83,7 +83,7 @@ Wir danken folgenden Personen, die zu diesem Projekt beigetragen haben:
     <td align="center">
       <a href="#">
         <sub>
-          <b>Du!</b>
+          <h2>Du!</h2>
         </sub>
       </a>
     </td>
