@@ -97,6 +97,6 @@ Möchten Sie Teil dieses Projekts sein? Klicken Sie [HIER](CONTRIBUTING.md) und 
 
 ## 📝 Lizenz
 
-Dieses Projekt steht unter keiner Lizenz daweil. Weitere Einzelheiten finden Sie daweil nicht.
+[MIT](LICENSE.md)
 
 [⬆ Zurück nach oben](#SpaceWars)<br>
