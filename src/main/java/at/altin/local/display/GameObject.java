@@ -17,7 +17,7 @@ public abstract class GameObject {
         this.height = height;
     }
 
-    public GameObject() {
+    public GameObject(){
 
     }
 
@@ -28,6 +28,7 @@ public abstract class GameObject {
     public Rectangle getBounds() {
         return new Rectangle(this.x, this.y, this.width, this.height);
     }
+    public abstract Point getPoint();
 
     public int getX() {
         return this.x;
