@@ -132,12 +132,10 @@ public class Spaceship extends GameObject {
 
     @Override
     public void tick() {
-
     }
 
     @Override
     public void render(Graphics g) {
-
     }
 
     @Override
