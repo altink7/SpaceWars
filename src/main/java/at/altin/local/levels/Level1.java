@@ -1,12 +1,9 @@
 package at.altin.local.levels;
-import at.altin.local.Game;
-import at.altin.local.gameObjects.Item;
 import at.altin.local.gameObjects.Spaceship;
 import at.altin.local.service.GraphicsLoader;
 import at.altin.local.slides.StaticSlide;
 
 import java.awt.*;
-import java.util.ArrayList;
 
 
 public class Level1 extends Level {

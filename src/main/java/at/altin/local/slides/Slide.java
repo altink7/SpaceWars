@@ -155,4 +155,7 @@ public abstract class Slide {
     public void setDrawStringY(int drawStringY) {
         this.drawStringY = drawStringY;
     }
+
+    public abstract void drawGraphics(Graphics g);
+    public abstract void drawLevel(Graphics g);
 }
