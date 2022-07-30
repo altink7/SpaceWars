@@ -15,7 +15,6 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.net.ServerSocket;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -41,7 +40,6 @@ public class Game extends Canvas implements Runnable{
     public static List<Spaceship> enemy_ships= new LinkedList<>();
     Level1 l1= new Level1(ship);
     ArrayList<Integer> deleteEnemy = new ArrayList<>();
-
     /***JavaDoc
      * -Hier wird das Spiel ausgeführt
      *
@@ -109,7 +107,7 @@ public class Game extends Canvas implements Runnable{
             }
             else if(keyNumber==10&&!spaceshipSelected){
                 phase=2; //Phase 2: hier wird ein Raumschiff gewählt
-
+                gameover=false;
                 StaticSlide p2= new StaticSlide(Color.lightGray,1200,750,img_spaceships,0,0,"Arial", 2,48,
                         Color.WHITE,"Wähle dein Raumschiff!",0,WIDTH/2 - g.getFontMetrics().stringWidth("Wähle dein Raumschiff!") / 2,100);
                 p2.drawGraphics(g);
@@ -134,7 +132,17 @@ public class Game extends Canvas implements Runnable{
                 for (Integer i :checkCollisions()) {
                     enemy_ships.removeIf(e -> e.getId() == i);
                 }
-                gameOver(g);
+
+                if(enemy_ships.size()==0){
+                    phase= 4;
+                    g.drawImage(GraphicsLoader.readGraphics("level1_finish.png"),0,0,null);
+                    g.drawString("Press Space",WIDTH/2-g.getFontMetrics().stringWidth("Press Space")/2,700);
+
+                    if(keyNumber==10){
+                        //Level2 folgt
+                    }
+                }
+                gameOver();
             }
 
 
@@ -154,7 +162,7 @@ public class Game extends Canvas implements Runnable{
         return deleteEnemy;
     }
 
-    public void gameOver(Graphics g) {
+    public void gameOver() {
         for (Spaceship sp : enemy_ships) {
             for (Item f : sp.fire) {
                 if (ship.getBounds().contains(f.getPoint())) {
@@ -174,7 +182,6 @@ public class Game extends Canvas implements Runnable{
             }
         }
     }
-
 
     public void tick() {
         if (!gameover) {

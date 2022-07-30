@@ -15,20 +15,23 @@ public class KeyHandler implements KeyListener {
 
     public void keyPressed(KeyEvent e) {
         int n= e.getKeyCode();
-        if(n==KeyEvent.VK_SPACE){
-            Game.keyNumber=10;
-        }
-        if(n==KeyEvent.VK_UP){
-            Game.keyNumber=8;
-        }
-        if(n==KeyEvent.VK_DOWN){
-            Game.keyNumber=2;
-        }
-        if(n==KeyEvent.VK_LEFT){
-            Game.keyNumber=4;
-        }
-        if(n==KeyEvent.VK_RIGHT){
-            Game.keyNumber=6;
+
+            if (n == KeyEvent.VK_SPACE) {
+                Game.keyNumber = 10;
+            }
+        if(!Game.gameover) {
+            if (n == KeyEvent.VK_UP) {
+                Game.keyNumber = 8;
+            }
+            if (n == KeyEvent.VK_DOWN) {
+                Game.keyNumber = 2;
+            }
+            if (n == KeyEvent.VK_LEFT) {
+                Game.keyNumber = 4;
+            }
+            if (n == KeyEvent.VK_RIGHT) {
+                Game.keyNumber = 6;
+            }
         }
 
     }
