@@ -42,7 +42,10 @@ public class GraphicsLoader {
 
     public static String setPath(String name){
         //hier Pfad anpassen
-        String projectPath= "C:\\Users\\User\\IdeaProjects\\NewGame\\src\\main\\java\\at\\altin\\local\\pictures\\";
+        String internPath= "C:\\Users\\User\\IdeaProjects\\";
+
+        //Projektpfad
+        String projectPath= internPath+"SpaceWars\\src\\main\\java\\at\\altin\\local\\pictures\\";
 
         return projectPath+name;
     }
