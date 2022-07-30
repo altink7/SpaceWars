@@ -44,11 +44,17 @@ public class Item extends GameObject {
     }
 
 
+
     @Override
     public void tick(){
     }
 
     @Override
     public void render(Graphics g) {
+    }
+
+    @Override
+    public Point getPoint() {
+        return new Point(getX()+getWidth()/2,getY());
     }
 }

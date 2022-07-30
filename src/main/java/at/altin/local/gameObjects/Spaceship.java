@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Spaceship extends GameObject {
+    long id;
     boolean running;
     public BufferedImage img_spaceship;
     public List<Item> fire = new ArrayList<>();// nur 1000 amo, sonst gameover
@@ -28,6 +29,12 @@ public class Spaceship extends GameObject {
         this.x=other.x;
         this.y=other.y;
         this.running=other.running;
+        this.fire=other.fire;
+        this.fireCounter=other.fireCounter;
+        this.random=other.random;
+        this.id=other.id;
+        this.width=other.width;
+        this.height=other.height;
     }
 
     public Spaceship(int xVal, int yVal){
@@ -35,14 +42,19 @@ public class Spaceship extends GameObject {
         this.y=yVal;
     }
 
-    public Spaceship(int xVal, int yVal, BufferedImage img){
+    public Spaceship(int xVal, int yVal, BufferedImage img,long id){
         this.x=xVal;
         this.y=yVal;
         this.img_spaceship=img;
+        this.width=img.getWidth();
+        this.height=img.getHeight();
+        this.id=id;
     }
 
     public Spaceship(int n, int xVal, int yVal){
         this.img_spaceship =GraphicsLoader.readGraphics("spaceship_"+n+".png");
+        this.width=img_spaceship.getWidth();
+        this.height=img_spaceship.getHeight();
         this.x = xVal;
         this.y=yVal;
     }
@@ -60,10 +72,13 @@ public class Spaceship extends GameObject {
         this.height= newImage.getHeight();
     }
 
-    public void checkCollisions(){
-
+    public long getId() {
+        return id;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
     public int checkBordersX(){
         //checkt die Grenzen und sagt in welche richtung man nicht mehr gehen kann-X-Achse
         if(x < 0 ) return 1;
@@ -81,19 +96,19 @@ public class Spaceship extends GameObject {
     public void moveSpaceship(){
             int keyEvent=Game.keyNumber;
             if (keyEvent==2&&checkBordersY()!=2) {
-                y += 7;
+                y += 9;
                 //Game.keyNumber=0;
             }
             if (keyEvent==4&&checkBordersX()!=1) {
-                x -= 7;
+                x -= 9;
                 //Game.keyNumber=0;
             }
             if (keyEvent==8&&checkBordersY()!=1) {
-                y -= 7;
+                y -= 9;
                 //Game.keyNumber=0;
             }
             if (keyEvent==6&&checkBordersX()!=2) {
-                x += 7;
+                x += 9;
                 //Game.keyNumber=0;
             }
     }
@@ -108,7 +123,6 @@ public class Spaceship extends GameObject {
             }
 
         }
-
         for(Item i:fire){
             i.initFire(g);
         }
@@ -126,6 +140,8 @@ public class Spaceship extends GameObject {
 
     }
 
-
-
+    @Override
+    public Point getPoint() {
+        return new Point(getX(), getY());
+    }
 }
