@@ -6,7 +6,7 @@ import at.altin.local.gameObjects.Spaceship;
 import at.altin.local.handlers.KeyHandler;
 import at.altin.local.handlers.MouseHandler;
 import at.altin.local.handlers.ObjectHandler;
-import at.altin.local.levels.Level1;
+import at.altin.local.levels.LevelOnlyShips;
 import at.altin.local.service.GraphicsLoader;
 import at.altin.local.slides.StaticSlide;
 
@@ -17,6 +17,7 @@ import java.net.ServerSocket;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 
 public class Game extends Canvas implements Runnable{
@@ -38,20 +39,17 @@ public class Game extends Canvas implements Runnable{
     public static int keyNumber=0;
     public static Spaceship ship= new Spaceship(WIDTH/2-40,550);
     public static List<Spaceship> enemy_ships= new LinkedList<>();
-    Level1 l1= new Level1(ship);
+    LevelOnlyShips l1= new LevelOnlyShips(ship); //mandatory
     ArrayList<Integer> deleteEnemy = new ArrayList<>();
-    /***JavaDoc
-     * -Hier wird das Spiel ausgeführt
-     *
-     *
+    /**
+     * Hier wird das Spiel ausgeführt
      */
     public Game() {
     }
 
-    /***Main
+    /**
      *ein neues Fenster wird hinzugefügt,
      *eine Änderung von der Größe wird nicht empfohlen
-     *
      */
     public static void main(String[] args) {
         new Window(WIDTH, HEIGHT, "NewGame", new Game());
@@ -80,11 +78,11 @@ public class Game extends Canvas implements Runnable{
             button_select[i] = new ClickArea(xValue, 600, 150, 85, img_button);
             xValue+=295;
         }
-        for(int i =0;i< 10;i++) {
-            enemy_ships.add(new Spaceship(80,86,GraphicsLoader.readGraphics("enemy.png"),i));
-            enemy_ships.get(i).setX(100*(i+1));
-        }
 
+        IntStream.range(0, 10).forEach(i -> {
+            enemy_ships.add(new Spaceship(80, 86, GraphicsLoader.readGraphics("enemy.png"), i));
+            enemy_ships.get(i).setX(100 * (i + 1));
+        });
     }
 
     public void render() {
@@ -133,13 +131,13 @@ public class Game extends Canvas implements Runnable{
                     enemy_ships.removeIf(e -> e.getId() == i);
                 }
 
-                if(enemy_ships.size()==0){
+                if(enemy_ships.isEmpty()){
                     phase= 4;
                     g.drawImage(GraphicsLoader.readGraphics("level1_finish.png"),0,0,null);
                     g.drawString("Press Space",WIDTH/2-g.getFontMetrics().stringWidth("Press Space")/2,700);
 
                     if(keyNumber==10){
-                        //Level2 folgt
+                        phase = 5;
                     }
                 }
                 gameOver();
@@ -152,13 +150,9 @@ public class Game extends Canvas implements Runnable{
     }
 
     public ArrayList<Integer> checkCollisions(){
-        for(Spaceship sp : enemy_ships) {
-            for (Item f : ship.fire) {
-                if (sp.getBounds().contains(f.getPoint())) {
-                    deleteEnemy.add((int) sp.getId());
-                }
-            }
-        }
+        enemy_ships.forEach(sp -> {
+            ship.fire.stream().filter(f -> sp.getBounds().contains(f.getPoint())).forEach(f -> deleteEnemy.add((int) sp.getId()));
+        });
         return deleteEnemy;
     }
 
@@ -171,13 +165,12 @@ public class Game extends Canvas implements Runnable{
                     spaceshipSelected=false;
 
                     enemy_ships = new LinkedList<>();
-                    for(int i =0;i< 10;i++) {
-                        enemy_ships.add(new Spaceship(80,86,GraphicsLoader.readGraphics("enemy.png"),i));
-                        enemy_ships.get(i).setX(100*(i+1));
-                    }
+                    IntStream.range(0, 10).forEach(i -> {
+                        enemy_ships.add(new Spaceship(80, 86, GraphicsLoader.readGraphics("enemy.png"), i));
+                        enemy_ships.get(i).setX(100 * (i + 1));
+                    });
                     deleteEnemy = new ArrayList<>();
                     ship= new Spaceship(WIDTH/2-40,550);
-
                 }
             }
         }
@@ -187,7 +180,6 @@ public class Game extends Canvas implements Runnable{
         if (!gameover) {
             ObjectHandler.tick();
         }
-
     }
 
     @Override
@@ -205,11 +197,13 @@ public class Game extends Canvas implements Runnable{
                 long now = System.nanoTime();
                 delta += (double) (now - pastTime) / ns;
 
-                for (pastTime = now; delta > 0.0D; --delta) {
+                pastTime = now;
+                while (delta > 0.0D) {
                     this.tick();
                     ++updates;
                     this.render();
                     ++frames;
+                    --delta;
                 }
 
                 if (System.currentTimeMillis() - timer > 1000L) {

@@ -6,9 +6,9 @@ import at.altin.local.slides.StaticSlide;
 import java.awt.*;
 
 
-public class Level1 extends Level {
+public class LevelOnlyShips extends Level {
 
-    public Level1(Spaceship spaceship){
+    public LevelOnlyShips(Spaceship spaceship){
         super(spaceship);
     }
 

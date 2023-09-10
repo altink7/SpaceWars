@@ -81,15 +81,26 @@ public class Spaceship extends GameObject {
     }
     public int checkBordersX(){
         //checkt die Grenzen und sagt in welche richtung man nicht mehr gehen kann-X-Achse
-        if(x < 0 ) return 1;
-        if(x > Game.WIDTH-width) return 2;
-            return 0;
+        if(x < 0 ){
+            return 1;
+        }
+
+        if(x > Game.WIDTH-width){
+            return 2;
+        }
+
+        return 0;
     }
 
     public int checkBordersY(){
         //checkt die Grenzen und sagt in welche richtung man nicht mehr gehen kann-Y-Achse
-        if(y < 0) return 1;
-        if(y > Game.HEIGHT-height) return 2;
+        if(y < 0){
+            return 1;
+        }
+        if(y > Game.HEIGHT-height){
+            return 2;
+        }
+
         return 0;
     }
 

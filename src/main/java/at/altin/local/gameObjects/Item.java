@@ -24,10 +24,6 @@ public class Item extends GameObject {
         setY(spaceship.getY()-image.getHeight());
         if(enemy)setY(spaceship.getY()+image.getHeight());
     }
-
-    //Constructors Ende
-
-
     public BufferedImage getImage() {
         return image;
     }
@@ -42,7 +38,6 @@ public class Item extends GameObject {
     public void updateY(int fireSpeed){
             setY(y-=fireSpeed);
     }
-
 
     @Override
     public void tick(){

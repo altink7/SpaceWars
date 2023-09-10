@@ -19,7 +19,9 @@ public class KeyHandler implements KeyListener {
             if (n == KeyEvent.VK_SPACE) {
                 Game.keyNumber = 10;
             }
-        if(!Game.gameover) {
+
+            if(!Game.gameover) {
+
             if (n == KeyEvent.VK_UP) {
                 Game.keyNumber = 8;
             }
