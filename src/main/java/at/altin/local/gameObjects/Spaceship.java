@@ -59,8 +59,6 @@ public class Spaceship extends GameObject {
         this.y=yVal;
     }
 
-    //Constructors_ENDE
-
     public BufferedImage getImg_spaceship() {
         return img_spaceship;
     }

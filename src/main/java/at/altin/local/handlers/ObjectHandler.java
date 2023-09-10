@@ -6,12 +6,8 @@ import java.awt.*;
 import java.util.LinkedList;
 
 public class ObjectHandler {
-    public static LinkedList<GameObject> list = new LinkedList<GameObject>();
+    public static LinkedList<GameObject> list = new LinkedList<>();
 
-    /***ObjectHandler
-     *
-     *
-     */
 
     public ObjectHandler() {
     }

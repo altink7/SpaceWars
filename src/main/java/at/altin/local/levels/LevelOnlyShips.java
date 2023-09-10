@@ -12,7 +12,6 @@ public class LevelOnlyShips extends Level {
         super(spaceship);
     }
 
-
     public void drawGraphics(Graphics g) {
         spaceship.moveSpaceship();
 

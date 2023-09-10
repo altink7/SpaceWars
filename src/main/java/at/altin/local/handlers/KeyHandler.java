@@ -5,11 +5,6 @@ import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener {
 
-    /***
-     *
-     * @param e
-     */
-
     public void keyTyped(KeyEvent e) {
     }
 

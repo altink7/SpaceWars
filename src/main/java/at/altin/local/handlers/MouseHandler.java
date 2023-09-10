@@ -9,10 +9,6 @@ import java.awt.event.MouseListener;
 
 public class MouseHandler implements MouseListener {
     public static int selectedButton=0;
-    /***
-     *
-     * @param e
-     */
 
     public void mouseClicked(MouseEvent e) {
     }
