@@ -2,6 +2,7 @@ package at.altin.local.display;
 
 import java.awt.*;
 
+@SuppressWarnings("unused")
 public abstract class GameObject {
     protected int x;
     protected int y;
