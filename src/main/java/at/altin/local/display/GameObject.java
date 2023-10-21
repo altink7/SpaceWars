@@ -1,7 +1,12 @@
 package at.altin.local.display;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.awt.*;
 
+@Setter
+@Getter
 @SuppressWarnings("unused")
 public abstract class GameObject {
     protected int x;
@@ -19,8 +24,9 @@ public abstract class GameObject {
     }
 
     public GameObject(){
-
     }
+
+    public abstract Point getPoint();
 
     public abstract void tick();
 
@@ -28,54 +34,5 @@ public abstract class GameObject {
 
     public Rectangle getBounds() {
         return new Rectangle(this.x, this.y, this.width, this.height);
-    }
-    public abstract Point getPoint();
-
-    public int getX() {
-        return this.x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public int getY() {
-        return this.y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    public int getWidth() {
-        return this.width;
-    }
-
-    public void setWidth(int width) {
-        this.width = width;
-    }
-
-    public int getHeight() {
-        return this.height;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
-    public float getVelX() {
-        return this.velX;
-    }
-
-    public void setVelX(float velX) {
-        this.velX = velX;
-    }
-
-    public float getVelY() {
-        return this.velY;
-    }
-
-    public void setVelY(float velY) {
-        this.velY = velY;
     }
 }

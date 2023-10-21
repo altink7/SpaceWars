@@ -56,7 +56,7 @@ public class Game extends Canvas implements Runnable{
         this.addKeyListener(new KeyHandler());
         this.addMouseListener(new MouseHandler());
         this.running = true;
-        this.thread = new Thread();
+        this.thread = new Thread(this);
         this.thread.start();
         this.run();
     }

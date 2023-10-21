@@ -3,6 +3,8 @@ package at.altin.local.gameObjects;
 import at.altin.local.Game;
 import at.altin.local.display.GameObject;
 import at.altin.local.service.GraphicsLoader;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -10,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+@Getter
+@Setter
 @SuppressWarnings("unused")
 public class Spaceship extends GameObject {
     long id;
@@ -60,10 +64,6 @@ public class Spaceship extends GameObject {
         this.y=yVal;
     }
 
-    public BufferedImage getImg_spaceship() {
-        return img_spaceship;
-    }
-
     public void setImg_spaceship(int n_img) {
         BufferedImage newImage =GraphicsLoader.readGraphics("spaceship_"+n_img+".png");
         this.img_spaceship = newImage;
@@ -71,13 +71,6 @@ public class Spaceship extends GameObject {
         this.height= newImage.getHeight();
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
     public int checkBordersX(){
         //checkt die Grenzen und sagt in welche richtung man nicht mehr gehen kann-X-Achse
         if(x < 0 ){

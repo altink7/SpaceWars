@@ -2,6 +2,8 @@ package at.altin.local.levels;
 import at.altin.local.gameObjects.Spaceship;
 import at.altin.local.service.GraphicsLoader;
 import at.altin.local.slides.StaticSlide;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.awt.*;
 

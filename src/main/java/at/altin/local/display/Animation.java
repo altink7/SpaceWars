@@ -1,8 +1,13 @@
 package at.altin.local.display;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+@Getter
+@Setter
 @SuppressWarnings("unused")
 public class Animation {
     private int x;
@@ -12,6 +17,7 @@ public class Animation {
     private long startTime;
     private boolean loop;
     private boolean running;
+
     private GameObject target;
     private BufferedImage[] images;
 
@@ -83,69 +89,5 @@ public class Animation {
         this.running = false;
         this.currentImage = 0;
         this.startTime = 0L;
-    }
-
-    public GameObject getTarget() {
-        return this.target;
-    }
-
-    public void setTarget(GameObject target) {
-        this.target = target;
-    }
-
-    public int getX() {
-        return this.x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public int getY() {
-        return this.y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    public int getCurrentImage() {
-        return this.currentImage;
-    }
-
-    public void setCurrentImage(int currentImage) {
-        this.currentImage = currentImage;
-    }
-
-    public long getDelay() {
-        return this.delay;
-    }
-
-    public void setDelay(long delay) {
-        this.delay = delay;
-    }
-
-    public boolean isLoop() {
-        return this.loop;
-    }
-
-    public void setLoop(boolean loop) {
-        this.loop = loop;
-    }
-
-    public boolean isRunning() {
-        return this.running;
-    }
-
-    public void setRunning(boolean running) {
-        this.running = running;
-    }
-
-    public BufferedImage[] getImages() {
-        return this.images;
-    }
-
-    public void setImages(BufferedImage[] images) {
-        this.images = images;
     }
 }

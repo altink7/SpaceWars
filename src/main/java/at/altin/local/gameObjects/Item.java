@@ -1,10 +1,14 @@
 package at.altin.local.gameObjects;
 
 import at.altin.local.display.GameObject;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+@Getter
+@Setter
 public class Item extends GameObject {
 
     public BufferedImage image;
@@ -22,17 +26,11 @@ public class Item extends GameObject {
         setY(spaceship.getY()-image.getHeight());
         if(enemy)setY(spaceship.getY()+image.getHeight());
     }
-    public BufferedImage getImage() {
-        return image;
-    }
-
-    public void setImage(BufferedImage image) {
-        this.image = image;
-    }
 
     public void initFire(Graphics g){
             g.drawImage(image,getX(),getY(),null);
     }
+
     public void updateY(int fireSpeed){
             setY(y-=fireSpeed);
     }
