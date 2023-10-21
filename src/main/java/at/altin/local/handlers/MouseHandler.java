@@ -2,7 +2,6 @@ package at.altin.local.handlers;
 
 import at.altin.local.Game;
 import at.altin.local.display.ClickArea;
-import at.altin.local.gameObjects.Spaceship;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;

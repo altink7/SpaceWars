@@ -5,6 +5,7 @@ import at.altin.local.display.GameObject;
 import java.awt.*;
 import java.util.LinkedList;
 
+@SuppressWarnings("unused")
 public class ObjectHandler {
     public static LinkedList<GameObject> list = new LinkedList<>();
 
@@ -21,7 +22,7 @@ public class ObjectHandler {
     }
 
     public static void render(Graphics g) {
-        GameObject temp = null;
+        GameObject temp;
 
         for (GameObject gameObject : list) {
             temp = gameObject;
@@ -31,7 +32,7 @@ public class ObjectHandler {
     }
 
     public static void tick() {
-        GameObject temp = null;
+        GameObject temp;
 
         for (GameObject gameObject : list) {
             temp = gameObject;
