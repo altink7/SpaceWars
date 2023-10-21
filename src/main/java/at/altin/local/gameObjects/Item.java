@@ -1,7 +1,6 @@
 package at.altin.local.gameObjects;
 
 import at.altin.local.display.GameObject;
-import at.altin.local.service.GraphicsLoader;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

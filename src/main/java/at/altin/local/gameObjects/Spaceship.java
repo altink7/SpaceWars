@@ -10,11 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+@SuppressWarnings("unused")
 public class Spaceship extends GameObject {
     long id;
     boolean running;
     public BufferedImage img_spaceship;
-    public List<Item> fire = new ArrayList<>();// nur 1000 amo, sonst gameover
+    public List<Item> fire = new ArrayList<>();// nur 1000 amo, sonst game over
     public int fireCounter =0;
     Random random =new Random();
 
