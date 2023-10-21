@@ -150,9 +150,7 @@ public class Game extends Canvas implements Runnable{
     }
 
     public ArrayList<Integer> checkCollisions(){
-        enemy_ships.forEach(sp -> {
-            ship.fire.stream().filter(f -> sp.getBounds().contains(f.getPoint())).forEach(f -> deleteEnemy.add((int) sp.getId()));
-        });
+        enemy_ships.forEach(sp -> ship.fire.stream().filter(f -> sp.getBounds().contains(f.getPoint())).forEach(f -> deleteEnemy.add((int) sp.getId())));
         return deleteEnemy;
     }
 

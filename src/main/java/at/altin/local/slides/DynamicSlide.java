@@ -3,6 +3,7 @@ package at.altin.local.slides;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+@SuppressWarnings("unused")
 public class DynamicSlide extends Slide{
     public DynamicSlide() {
     }
